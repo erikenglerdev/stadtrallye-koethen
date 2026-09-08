@@ -128,7 +128,7 @@ replay rejection, API/session validation, and SQLite recovery across restart. Th
 use isolated test databases and synthetic coordinates, not real participant locations.
 Legacy browser tests use the examples page and a running Next server.
 
-The original project and its assets retain their [CC BY-NC-SA 4.0 license](LICENSE).
+This is an adaptation of [Scavenger Hunt](https://github.com/vincentchalamon/scavenger-hunt) by [Vincent CHALAMON](https://github.com/vincentchalamon), maintained for Köthen by Erik Engler. The original and this adaptation use [CC BY-NC-SA 4.0](LICENSE); third-party material retains its own licenses. Changes include the German GPS rally, team sessions, server timing, dashboard and Docker distribution. See [attribution, changes and redistribution terms](NOTICE.md) and the public `/lizenzen/` page.
 See [legacy documentation](docs/legacy-examples.md) for the original clue mechanisms.
 
 The active counterclockwise route has 25 unique stations plus the return to the start. Stiftstraße (original station 15) was removed at the organizer’s request; the following stations were renumbered. Original GPX and notes are preserved in `data/routes/`. The simulator map displays the supplied walking track, including the western Ritterstraße waypoint. See [route details](docs/rally-route.md) for coordinates and the narrower GPS radii at nearby stations.

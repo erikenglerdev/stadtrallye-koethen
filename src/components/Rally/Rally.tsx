@@ -1,4 +1,5 @@
 'use client';
+import Attribution from '@/components/Attribution/Attribution';
 import {useCallback, useEffect, useRef, useState} from 'react';
 import dynamic from 'next/dynamic';
 import {ConnectionError, requestRally} from '@/rally/client-api';
@@ -139,5 +140,6 @@ export default function Rally({simulation = false}: {simulation?: boolean}) {
     </>}
     {resetting && <section className={styles.card} role="alertdialog" aria-labelledby="restart-title"><h2 id="restart-title">Auf diesem Gerät abmelden?</h2><p>Eine gestartete Teamrunde läuft auf dem Server und den anderen Handys weiter. Ihr könnt ihr mit eurer Kennung wieder beitreten, solange sie läuft. Eine noch nicht gestartete Anmeldung wird nur dann freigegeben, wenn kein anderes Handy mehr angemeldet ist.</p><button onClick={()=>void reset()} disabled={busy || !connected}>Abmelden</button><button className={styles.link} onClick={()=>setResetting(false)}>Abbrechen</button></section>}
     <footer className={styles.footer}>Der Server speichert Kennung, Teamname, Startzeit, Stationsbestätigungen und Endzeit inklusive Strafzeit. Teamname und Zeiten sind für die Organisation im passwortgeschützten Dashboard sichtbar. GPS-Koordinaten werden nur für die Prüfung verarbeitet, nicht als Bewegungsverlauf gespeichert. Die Zeit läuft auch bei geschlossenem Bildschirm weiter.</footer>
+    <Attribution/>
   </main>;
 }

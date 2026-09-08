@@ -4,14 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "prebuild": "npm run validate:config",
+    "prebuild": "npm run validate:config && npm run legal:notices",
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
     "test:e2e": "playwright",
     "validate:config": "node --import tsx scripts/validate-config.ts",
     "test:rally": "node --import tsx --test tests/rally/*.test.ts",
-    "lint:rally": "eslint --no-ignore src/rally/*.ts src/components/Rally/*.tsx src/app/api/rally/route.ts src/app/rallye/page.tsx tests/rally/*.test.ts src/components/Dashboard/*.tsx src/app/dashboard/page.tsx src/app/api/dashboard/route.ts"
+    "lint:rally": "eslint --no-ignore src/rally/*.ts src/components/Rally/*.tsx src/app/api/rally/route.ts src/app/rallye/page.tsx tests/rally/*.test.ts src/components/Dashboard/*.tsx src/app/dashboard/page.tsx src/app/api/dashboard/route.ts",
+    "legal:notices": "node scripts/generate-notices.mjs",
+    "predev": "npm run legal:notices"
   },
   "dependencies": {
     "@fontsource/geist-mono": "^5.2.7",
@@ -47,5 +49,6 @@
   },
   "engines": {
     "node": ">=24.0.0"
-  }
+  },
+  "license": "CC-BY-NC-SA-4.0"
 }

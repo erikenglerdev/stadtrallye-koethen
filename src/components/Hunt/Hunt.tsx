@@ -1,4 +1,5 @@
 "use client";
+import Attribution from '@/components/Attribution/Attribution';
 
 import {desktopPreview} from "@/lib/local-preview";
 
@@ -177,6 +178,7 @@ const HuntContent: React.FC<HuntProps> = ({hunt}) => {
             </Nav.Item>
           </Nav>
         </Tab.Container>
+        <Attribution/>
       </div>
     </>
   );

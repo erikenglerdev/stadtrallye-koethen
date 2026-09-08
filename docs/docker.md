@@ -26,3 +26,7 @@ The workflow follows the [official Docker multi-platform Actions setup](https://
 The named `rally-data` volume preserves team identities, confirmations, penalties and finish timestamps across container replacement. Do not use `docker compose down -v` unless intentionally deleting all results. For a consistent backup, stop the app briefly, back up the entire volume (including SQLite sidecar files), then start it again. Restore the backup into the volume while the app is stopped. Existing databases gain team and device-session tables automatically, preserving existing browser sessions; older anonymous rounds are labeled as legacy entries.
 
 Development simulation is deliberately unavailable in this production image. Locally, use `npm run dev -- --hostname 127.0.0.1`, then `/?simulation=1` and `/dashboard/?simulation=1`. Simulation uses its own database and is never mixed into the real dashboard. For local development put the same dashboard variables in ignored `.env.local`.
+
+## License and attribution
+
+Images contain the unchanged upstream `LICENSE`, `NOTICE.md` and public `/legal/` documents. `/lizenzen/` is accessible without login. The project derives from Scavenger Hunt by Vincent CHALAMON and this adaptation remains CC BY-NC-SA 4.0, except separately licensed third-party material. Preserve these notices when redistributing images. See [NOTICE.md](../NOTICE.md) for changes, credits and the scope of the rights review.

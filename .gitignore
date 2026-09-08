@@ -55,3 +55,6 @@ certificates
 /.data/
 
 !.env.example
+
+# Generated verbatim legal notices (included in builds and images)
+/public/legal/

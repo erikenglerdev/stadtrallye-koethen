@@ -16,7 +16,7 @@ This application lets you create and play scavenger hunts that guide players thr
 - 🕶️ **No account, no sign-up** — the game is public and fully anonymous.
 - 💸 **Free for everyone** — no paywall, no in-app purchases.
 - 🔒 **No backend, no tracking** — progress lives entirely in your phone's `localStorage`, nothing leaves the device.
-- 🛠️ **Open source** — fork the repo and build your own hunts, under the terms of the [CC BY-NC-SA 4.0](LICENSE) license.
+- 🛠️ **Open source** — fork the repo and build your own hunts, under the terms of the [CC BY-NC-SA 4.0](../LICENSE) license.
 
 ### Under the hood
 

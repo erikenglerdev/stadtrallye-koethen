@@ -11,6 +11,8 @@ ENV BASE_PATH=$BASE_PATH
 RUN npm run build
 
 FROM node:24-bookworm-slim AS runner
+LABEL org.opencontainers.image.licenses="CC-BY-NC-SA-4.0" \
+      org.opencontainers.image.authors="Vincent CHALAMON (original); Erik Engler (adaptation)"
 WORKDIR /app
 ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 HOSTNAME=0.0.0.0 PORT=3000 RALLY_DATA_DIR=/app/.data
 ARG BASE_PATH=""
@@ -18,6 +20,7 @@ ENV BASE_PATH=$BASE_PATH
 COPY --from=builder --chown=node:node /app/.next/standalone ./
 COPY --from=builder --chown=node:node /app/.next/static ./.next/static
 COPY --from=builder --chown=node:node /app/public ./public
+COPY --from=builder --chown=node:node /app/LICENSE /app/NOTICE.md ./
 RUN mkdir -p /app/.data && chown node:node /app/.data
 USER node
 EXPOSE 3000

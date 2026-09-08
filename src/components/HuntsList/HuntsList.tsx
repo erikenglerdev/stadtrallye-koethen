@@ -1,4 +1,5 @@
 "use client";
+import Attribution from '@/components/Attribution/Attribution';
 
 import {desktopPreview} from "@/lib/local-preview";
 
@@ -123,7 +124,7 @@ export const HuntsList: React.FC<HuntsListProps> = ({hunts}) => {
 
         {/* Footer Info */}
         <div className={styles.footer}>
-          <p className={styles.footerText}>{t('huntFooterTip')}</p>
+          <p className={styles.footerText}>{t('huntFooterTip')}</p><Attribution/>
         </div>
       </Container>
 

@@ -1,4 +1,5 @@
 'use client';
+import Attribution from '@/components/Attribution/Attribution';
 import {useCallback,useEffect,useRef,useState} from 'react';
 import type {DashboardView} from '@/rally/types';
 import styles from './Dashboard.module.css';
@@ -41,5 +42,6 @@ export default function Dashboard({simulation=false}:{simulation?:boolean}) {
  <p>Automatische Aktualisierung alle 5 Sekunden. Stand: {data ? new Date(data.serverNow).toLocaleTimeString('de-DE') : '–'}. Gesamtzeit = Laufzeit + Strafzeit.</p>
  {groups.map(status=>{const teams=(data?.teams.filter(t=>t.status===status) ?? []).sort((a,b)=>status==='finished'?a.elapsedMs-b.elapsedMs:a.id-b.id);return <section className={styles.card} key={status}><h2>{labels[status]} ({teams.length})</h2>{teams.length===0?<p>Keine Teams.</p>:<div className={styles.table}><table><thead><tr><th>Kennung</th><th>Team</th><th>Gesamtzeit</th><th>Strafzeit</th><th>Start</th><th>Zieleinlauf</th></tr></thead><tbody>{teams.map(team=><tr key={team.id}><td>{team.code}</td><td>{team.teamName}</td><td className={styles.time}>{status==='outdated'?'–':duration(team.elapsedMs+(status==='running'&&!error?Math.max(0,tick-synced):0))}</td><td>{duration(team.penaltyMs)}</td><td>{team.startedAt===null?'–':new Date(team.startedAt).toLocaleString('de-DE')}</td><td>{team.finishedAt===null?'–':new Date(team.finishedAt).toLocaleString('de-DE')}</td></tr>)}</tbody></table></div>}</section>;})}
  </>}
+ <Attribution/>
  </main>;
 }
