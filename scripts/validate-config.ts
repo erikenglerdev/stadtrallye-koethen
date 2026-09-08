@@ -1,3 +1,5 @@
+import {route} from "../src/rally/route";
+console.log(`GPS rally: ${route.stations.length} valid stations`);
 /**
  * Config.json validation script
  * Uses Zod to validate structure and types

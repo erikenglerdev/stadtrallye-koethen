@@ -21,6 +21,7 @@ export default defineConfig({
     timeout: 10000,
   },
   testDir: './tests',
+  testIgnore: '**/rally/*.test.ts',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -92,7 +93,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npx serve@latest out',
+    command: 'npm start',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
   },

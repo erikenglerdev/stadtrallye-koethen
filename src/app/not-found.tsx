@@ -1,5 +1,7 @@
 "use client";
 
+import {desktopPreview} from "@/lib/local-preview";
+
 import Link from "next/link";
 import {useEffect, useState} from "react";
 import {useTranslation} from "@/i18n";
@@ -38,7 +40,7 @@ export default function NotFound() {
     return <CompassLoader fullScreen text={t('loading')} />;
   }
 
-  if (!isMobile) {
+  if (!isMobile && !desktopPreview) {
     return (
       <div style={screenStyle}>
         <h2 style={{fontFamily: "var(--font-display)", fontSize: 24, fontWeight: 700, margin: "0 0 8px"}}>{t('mobileOnly')}</h2>
@@ -47,7 +49,7 @@ export default function NotFound() {
     );
   }
 
-  if (locked) {
+  if (locked && !desktopPreview) {
     return (
       <div style={screenStyle}>
         <h2 style={{fontFamily: "var(--font-display)", fontSize: 24, fontWeight: 700, margin: "0 0 8px"}}>{t('landscapeNotSupported')}</h2>
@@ -84,7 +86,7 @@ export default function NotFound() {
         {t('notFoundMessage')}
       </p>
       <Link
-        href="/"
+        href="/beispiele/"
         style={{
           display: "inline-flex", alignItems: "center", gap: 8,
           padding: "13px 20px", background: "var(--color-ink)", color: "#fff",

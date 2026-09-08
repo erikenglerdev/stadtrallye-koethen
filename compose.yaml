@@ -1,0 +1,23 @@
+services:
+  rally:
+    build:
+      context: .
+      args:
+        BASE_PATH: ${BASE_PATH:-}
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${RALLY_PORT:-3000}:3000"
+    environment:
+      APP_ORIGIN: ${APP_ORIGIN:?Set APP_ORIGIN in .env}
+      RALLY_DASHBOARD_PASSWORD: ${RALLY_DASHBOARD_PASSWORD:?Set dashboard password in .env}
+      RALLY_DASHBOARD_SESSION_SECRET: ${RALLY_DASHBOARD_SESSION_SECRET:?Set a random session secret in .env}
+      RALLY_DATA_DIR: /app/.data
+    volumes:
+      - rally-data:/app/.data
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+volumes:
+  rally-data:

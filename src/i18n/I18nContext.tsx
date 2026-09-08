@@ -1,5 +1,7 @@
 "use client";
 
+import {previewLanguage} from "@/lib/local-preview";
+
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { translations, Language, TranslationKey } from "./translations";
 
@@ -35,7 +37,7 @@ function detectBrowserLanguage(): Language {
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("fr");
+  const [language, setLanguageState] = useState<Language>(previewLanguage ?? "fr");
 
   useEffect(() => {
     // Detect language on component mount
@@ -43,7 +45,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
       ? localStorage.getItem("language") as Language | null
       : null;
 
-    const detectedLang = savedLang || detectBrowserLanguage();
+    const detectedLang = previewLanguage || savedLang || detectBrowserLanguage();
     setLanguageState(detectedLang);
   }, []);
 

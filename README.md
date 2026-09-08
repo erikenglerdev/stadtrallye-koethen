@@ -1,715 +1,146 @@
-# Scavenger Hunt
+# Köthener Stadtrallye
 
-> A mobile-first web application for creating location-based scavenger hunts with interactive clues and challenges.
+A German, mobile-friendly GPS rally with 25 stations, selectable starting station,
+a mandatory circular sequence, and server-authoritative timing.
 
-## 📖 Overview
+## Run locally
 
-This application lets you create and play scavenger hunts that guide players through various locations. Players solve clues, complete challenges, and collect keywords to progress through the game.
+Requires **Node.js 24+** and npm. SQLite is provided by Node itself; no new production dependency is needed.
 
-**Built with:** [Next.js 16](https://nextjs.org/) (App Router + Turbopack), [TypeScript](https://www.typescriptlang.org/), [React Leaflet](https://react-leaflet.js.org/), and [OpenStreetMap](https://www.openstreetmap.org/).
-
-### Why this project
-
-- 📱 **Nothing to install** — it's a mobile-only website, not a native app. Just open the URL on your phone.
-- 🕶️ **No account, no sign-up** — the game is public and fully anonymous.
-- 💸 **Free for everyone** — no paywall, no in-app purchases.
-- 🔒 **No backend, no tracking** — progress lives entirely in your phone's `localStorage`, nothing leaves the device.
-- 🛠️ **Open source** — fork the repo and build your own hunts, under the terms of the [CC BY-NC-SA 4.0](LICENSE) license.
-
-### Under the hood
-
-- 🗺️ Free, key-less mapping via Leaflet + OpenStreetMap tiles
-- 🌍 Built-in i18n (French / English) with per-hunt language selection
-- 🧭 Onboarding tour powered by [driver.js](https://driverjs.com/) on first launch
-- 🧩 8 interactive item types (3D, scratch card, magnifier, page-flip, ...)
-- 📦 Static export — deploys anywhere (GitHub Pages, Netlify, S3/CloudFront, ...)
-
----
-
-## 📸 Preview
-
-<table>
-  <tr>
-    <td align="center" width="33%">
-      <img src="docs/screenshots/01-hunts-list.jpg" alt="Hunts list" width="240" /><br/>
-      <sub><b>1. Hunts list</b></sub>
-    </td>
-    <td align="center" width="33%">
-      <img src="docs/screenshots/02-onboarding.jpg" alt="Onboarding tour" width="240" /><br/>
-      <sub><b>2. Onboarding tour</b></sub>
-    </td>
-    <td align="center" width="33%">
-      <img src="docs/screenshots/03-manuscript.jpg" alt="Manuscript" width="240" /><br/>
-      <sub><b>3. Manuscript</b></sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="docs/screenshots/04-map-place.jpg" alt="Map and place details" width="240" /><br/>
-      <sub><b>4. Map &amp; place details</b></sub>
-    </td>
-    <td align="center">
-      <img src="docs/screenshots/05-magnifier.jpg" alt="Magnifier puzzle" width="240" /><br/>
-      <sub><b>5. Magnifier puzzle</b></sub>
-    </td>
-    <td align="center">
-      <img src="docs/screenshots/06-keyword-found.jpg" alt="Keyword found" width="240" /><br/>
-      <sub><b>6. Keyword found</b></sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="docs/screenshots/07-phrase-completed.jpg" alt="Phrase reconstructed" width="240" /><br/>
-      <sub><b>7. Phrase reconstructed</b></sub>
-    </td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+ and npm
-- A mobile device or mobile browser emulator (the app is mobile-only)
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd scavenger-hunt
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Run the development server**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open the application**
-   
-   Navigate to [http://localhost:3000](http://localhost:3000) on your mobile device or browser.
-
-<details>
-<summary>📱 Testing on a real mobile device</summary>
-
-To test on your phone while running the dev server on your computer:
-
-1. Make sure your phone and computer are on the same network
-2. Find your computer's local IP address:
-   ```bash
-   # On Linux/Mac
-   ip addr show | grep inet
-   # or
-   ifconfig | grep inet
-   ```
-3. On your phone, navigate to `http://YOUR_IP_ADDRESS:3000`
-</details>
-
----
-
-## 🎮 Creating Your Hunt
-
-### Quick Start
-
-Edit the `config.json` file to create your scavenger hunt:
-
-```json
-{
-  "hunts": [
-    {
-      "slug": "my-first-hunt",
-      "name": "My First Hunt",
-      "lang": "en",
-      "description": "A short description of your hunt",
-      "duration": "~1h",
-      "coordinates": { "lat": 48.8566, "lng": 2.3522 },
-      "manuscript": "<p>Your hunt story goes here...</p>",
-      "phrase": "The complete phrase players need to discover",
-      "defaultKeywords": ["Some", "starting", "words"],
-      "places": [
-        {
-          "name": "First Location",
-          "description": "<p>Description of this location</p>",
-          "coordinates": { "lat": 48.8584, "lng": 2.2945 },
-          "item": {
-            "type": "keyword",
-            "options": { "keyword": "hidden" }
-          }
-        }
-      ]
-    }
-  ]
-}
+```sh
+npm ci
+npm run dev -- --hostname 127.0.0.1
 ```
 
-### Configuration Structure
+Open http://127.0.0.1:3000/. `/rallye/` opens the same game.
+The former clue-based hunts remain available at `/beispiele/` and their existing URLs.
 
-<details>
-<summary><b>Hunt Properties</b></summary>
+## Local simulation
 
-| Property | Type | Required | Description |
-|----------|------|----------|-------------|
-| `slug` | string | ✅ | Unique identifier for the hunt (used in URLs) |
-| `name` | string | ✅ | Display name of the hunt |
-| `lang` | string | ✅ | Hunt content language code (`fr`, `en`, ...). Determines the badge shown in the hunts list. |
-| `description` | string | ✅ | Short description shown in the hunt list |
-| `duration` | string | ❌ | Estimated duration (e.g., `~2h`) |
-| `coordinates` | object | ✅ | Starting point coordinates `{lat, lng}` |
-| `manuscript` | string | ✅ | Hunt story/intro (supports HTML) |
-| `phrase` | string | ✅ | Complete phrase to discover |
-| `defaultKeywords` | array | ✅ | Starting keywords given to players |
-| `places` | array | ✅ | List of locations in the hunt |
+Start `npm run dev` and open http://127.0.0.1:3000/?simulation=1 (or click
+“Testmodus aktivieren” on the normal start screen). Enter any start number.
+Click “Startstation simulieren”, then “Nächste Station simulieren” for each stop,
+and finally “Rückkehr zum Start simulieren”. Each check takes about five seconds.
+No browser location permission is requested. The simulator supplies accurate fixes
+at the expected station; the ordinary challenge, GPS validation, sequence and timer
+remain in use. Reload resumes the test round. “Neue Runde beginnen” resets only the
+selected mode's cookie. Switching back to real GPS preserves the real round.
 
-</details>
+Simulation is server-gated to development on loopback hosts; production and remote
+forwarded clients receive 404. Test sessions use a separate HTTP-only cookie and
+`.data/rally-simulation.sqlite`, never the real run database. `npm run build` /
+`npm start` does not enable the simulator, even with `?simulation=1`.
 
-<details>
-<summary><b>Place Properties</b></summary>
+## Game rules
 
-| Property | Type | Required | Description |
-|----------|------|----------|-------------|
-| `name` | string | ✅ | Location name |
-| `description` | string | ✅ | Location description (supports HTML) |
-| `coordinates` | object | ✅ | Location coordinates `{lat, lng}` |
-| `coordinateMargin` | number | ❌ | Proximity margin in degrees (default: `0.001` ≈ 111m) |
-| `link` | string | ❌ | External link for more information |
-| `item` | object | ✅ | Interactive item/clue at this location |
+1. Enter an assigned team code, a team name and any start station number (1–25).
+2. At that station, press “Wir sind da”. Only a successful GPS check starts the timer.
+3. Read the hint, walk to the next station, and confirm again.
+4. Visit every station in order, wrapping from 25 to 1.
+5. Return to the original start station and confirm once more to finish.
 
-**Getting Coordinates:**
-- Use [OpenStreetMap](https://www.openstreetmap.org/) - right-click on the map and select "Show address"
-- Use [Google Maps](https://maps.google.com/) - right-click and select coordinates to copy
-- Format: `{"lat": 48.8566, "lng": 2.3522}`
+The server records 26 confirmations: the starting station, 24 other stations,
+and the return to start. Pausing the browser does not pause elapsed time.
+Reload restores the same run using an HTTP-only session cookie. One browser profile
+represents one group. Clearing cookies or explicitly starting again creates a separate run.
+No participant identity or competition registration is implemented.
 
-</details>
+## GPS checks
 
-### Validating Your Configuration
+- Per-station radius: initially 30 m, configurable in `data/rally-route.json`.
+- Maximum reported accuracy radius: 25 m.
+- Client gathers at least three fresh fixes across at least five seconds.
+- Server independently validates coordinates, timestamps, accuracy, expected station,
+  and sample span. Each check uses a short-lived, single-use server challenge.
+- Each fix must also be outside the preceding station’s radius plus 5 m. This prevents
+  confirming two nearby stations while standing in overlapping acceptance areas.
+- Invalid/denied/unavailable GPS, timeout, and network errors do not advance the run.
+- Raw GPS coordinates are processed for confirmation and are not persisted.
+- The map has no destination markers or place search that would reveal future stops.
 
-**Automatic validation** happens during:
-- Build time: `npm run build`
-- Runtime: App won't start with invalid config
+**GPS is not a proof of physical presence or walking.** A modified client can submit
+fabricated coordinates. Server timing prevents changing a result merely by editing
+localStorage or the device clock, but does not prevent GPS spoofing, driving,
+sharing a session, or starting a new session. Supervised rotating station codes or
+staff confirmation would be needed for stronger attendance evidence.
 
-**Manual validation:**
-```bash
+## Route and placeholder hints
+
+See [the numbered route](docs/rally-route.md).
+Edit `hint` on a station to change the hint **leading to that station**.
+All hints currently contain an explicitly fictional text and the destination name
+for testing. Replace these before an actual mystery game.
+
+Keep `id` stable. After reordering, renumber `number` sequentially.
+Any route/hint change changes the route version; existing sessions must start a new
+round, preventing accidental reuse of progress for a changed itinerary.
+Coordinates are from the supplied Maps list, not surveyed meeting points.
+Before the event, verify pedestrian access, exact outdoor meeting points, and GPS
+reception at every station. Do not route groups into buildings or operational areas.
+
+## Server operation
+
+This app now requires a **Node server**. Static export / GitHub Pages cannot run the
+GPS confirmation API. The former Pages workflow now validates a server build only.
+Nothing has been deployed by this change.
+
+```sh
+npm run build
+npm start -- --hostname 127.0.0.1
+```
+
+Run one persistent Node instance behind an HTTPS reverse proxy. Set:
+
+```dotenv
+APP_ORIGIN=https://your-rally.example
+RALLY_DATA_DIR=/var/lib/koethen-rally
+```
+
+`APP_ORIGIN` must exactly match the browser origin, without a trailing slash. Configure
+the proxy to forward the original host. Persist the data directory across releases.
+The default database is `.data/rally.sqlite`, with SQLite WAL sidecar files. Use a
+SQLite-aware backup or stop the server when copying its database files. Restrict the
+directory to the server account. It must not be served as public web content.
+
+HTTPS is required for GPS on real phones; plain `http://192.168.x.x` is insufficient.
+Loopback HTTP is supported for local development. Production cookies require HTTPS.
+No mobile-network deployment or real-world GPS walk has been performed here.
+
+The database stores a hash of the session token, route version, start index,
+start/end times, challenge state, and station confirmation timestamps. It stores no
+continuous tracking. Operators must set an appropriate event-data retention policy.
+A lost cookie cannot be recovered through this app. Server storage and network
+availability are required for confirmations. Use proxy rate/body limits before a
+public event; no distributed rate limiter or multi-instance deployment is included.
+
+## Verification
+
+```sh
+npm run test:rally
 npm run validate:config
-```
-
-This checks:
-- ✅ All required fields are present
-- ✅ Data types are correct
-- ✅ Item types are valid
-- ✅ Structure matches the schema
-
-<details>
-<summary>Example error output</summary>
-
-```
-❌ Error validating config.json file:
-
-1. hunts → 0 → coordinates → lat
-   Invalid input: expected number, received string
-
-Total: 1 error(s) detected
-
-💡 Check the structure and types in config.json
-```
-
-</details>
-
----
-
-## 🎨 Available Item Types
-
-Items are interactive elements that players encounter at each location. Choose from these types:
-
-### 1. Keyword
-
-A simple clickable keyword to collect.
-
-```json
-{
-  "type": "keyword",
-  "options": {
-    "keyword": "treasure"
-  }
-}
-```
-
-<details>
-<summary><b>2. Image</b></summary>
-
-A static image without interactions.
-
-```json
-{
-  "type": "image",
-  "options": {
-    "image": "/assets/my-hunt/image.png"
-  }
-}
-```
-
-</details>
-
-<details>
-<summary><b>3. Clickable Image</b></summary>
-
-An image with clickable hotspots that trigger actions.
-
-```json
-{
-  "type": "clickable-image",
-  "options": {
-    "image": "/assets/my-hunt/image.png",
-    "debug": false,
-    "clickableAreas": [
-      {
-        "top": "10%",
-        "left": "10%",
-        "width": "20%",
-        "height": "15%",
-        "action": {
-          "type": "keyword",
-          "options": { "keyword": "hidden" }
-        }
-      }
-    ]
-  }
-}
-```
-
-**Position properties:** Use `top`/`bottom` and `left`/`right` with percentage values.
-
-**Actions:** Can be any other item type (keyword, magnifier, image, etc.)
-
-</details>
-
-<details>
-<summary><b>4. Scratch Card</b></summary>
-
-An image with scratchable areas that reveal text or keywords.
-
-```json
-{
-  "type": "scratch-card",
-  "options": {
-    "image": "/assets/my-hunt/scratch.png",
-    "width": 340,
-    "height": 380,
-    "scratchableAreas": [
-      {
-        "top": "45%",
-        "right": "15%",
-        "width": "10%",
-        "height": "20%",
-        "text": "Secret word",
-        "keyword": true
-      }
-    ]
-  }
-}
-```
-
-**`keyword: true`** marks the text as a collectible keyword.
-
-</details>
-
-<details>
-<summary><b>5. Magnifier</b></summary>
-
-An image with a magnifying glass to reveal hidden details.
-
-```json
-{
-  "type": "magnifier",
-  "options": {
-    "image": "/assets/my-hunt/image.jpg",
-    "keyword": "hidden",
-    "keywordPosition": { "x": 130, "y": 440 }
-  }
-}
-```
-
-**Position:** Pixel coordinates where the keyword is hidden.
-
-</details>
-
-<details>
-<summary><b>6. Card Flip</b></summary>
-
-A card that flips to reveal another image.
-
-```json
-{
-  "type": "card-flip",
-  "options": {
-    "front": "/assets/my-hunt/front.png",
-    "back": "/assets/my-hunt/back.jpg"
-  }
-}
-```
-
-</details>
-
-<details>
-<summary><b>7. Page Flip</b></summary>
-
-A book with flippable pages containing text and keywords.
-
-```json
-{
-  "type": "page-flip",
-  "options": {
-    "image": "/assets/my-hunt/book.png",
-    "pages": [
-      {
-        "text": "<p>Page content here...</p>"
-      },
-      {
-        "text": "<p>Click {keyword}this{/keyword} to collect it!</p>"
-      }
-    ]
-  }
-}
-```
-
-**Keyword syntax:** `{keyword}word{/keyword}` creates a clickable keyword.
-
-</details>
-
-<details>
-<summary><b>8. Three Fiber (3D Box)</b></summary>
-
-A rotatable 3D box with textures on each face.
-
-```json
-{
-  "type": "three-fiber",
-  "options": {
-    "image": "/assets/my-hunt/box.png",
-    "textures": [
-      "/assets/my-hunt/right.png",
-      "/assets/my-hunt/left.png",
-      "/assets/my-hunt/top.png",
-      "/assets/my-hunt/bottom.png",
-      "/assets/my-hunt/front.png",
-      "/assets/my-hunt/back.png"
-    ],
-    "keyword": "treasure"
-  }
-}
-```
-
-**Texture order:** right, left, top, bottom, front, back
-
-</details>
-
----
-
-## 🌍 Internationalization (i18n)
-
-The app interface ships in **French** (default) and **English**. Hunt content is authored independently — each hunt declares its own `lang`.
-
-- **Provider:** `I18nProvider` in `src/components/Providers/Providers.tsx`
-- **Hook:** `useTranslation()` returns `{ language, setLanguage, t }`
-- **Strings:** declared in `src/i18n/translations.ts` (type-safe via the `TranslationKey` union)
-
-<details>
-<summary>Adding a new UI string</summary>
-
-1. Add the key to both `fr` and `en` objects in `src/i18n/translations.ts`.
-2. Use it in any component:
-   ```tsx
-   import { useTranslation } from '@/i18n';
-
-   const { t } = useTranslation();
-   return <span>{t('myNewKey')}</span>;
-   ```
-
-</details>
-
-<details>
-<summary>Adding a hunt in another language</summary>
-
-Add a new entry in `config.json` with the desired `lang`:
-
-```json
-{
-  "slug": "the-secret-of-old-lille",
-  "name": "The Secret of Old Lille",
-  "lang": "en",
-  "description": "Explore Old Lille and solve the puzzles...",
-  "manuscript": "<p>...</p>",
-  "phrase": "...",
-  "places": [ /* ... */ ]
-}
-```
-
-The hunts list automatically displays the language badge (`FR`, `EN`, ...).
-
-</details>
-
----
-
-## 🛠️ Development
-
-### Project Structure
-
-```
-scavenger-hunt/
-├── config.json              # Hunt configuration (validated by Zod)
-├── docs/screenshots/        # README screenshots
-├── public/
-│   └── assets/              # Hunt images, 3D textures, icons
-├── scripts/
-│   └── validate-config.ts   # Standalone config validator
-├── src/
-│   ├── app/                 # Next.js App Router (pages, layout, [slug])
-│   ├── components/          # React components
-│   │   ├── Items/           # Interactive item implementations
-│   │   ├── Map/             # Leaflet integration (Map, MarkerWithPopup, ...)
-│   │   ├── Hunt/            # Hunt screen (manuscript + map tabs)
-│   │   ├── HuntsList/       # Landing page hunts grid
-│   │   ├── Manuscript/      # Phrase reconstruction view
-│   │   ├── CompletionCard/  # End-game card
-│   │   └── UI/              # Shared primitives (Icon, ParchmentCard, ...)
-│   ├── contexts/            # React Context providers (Phrase, Toast, Moment)
-│   ├── hooks/               # useGeolocation, useWakeLock, useOnboarding, ...
-│   ├── i18n/                # Translations (fr/en) + I18nContext
-│   ├── lib/                 # Storage, hunts, assets, config schema
-│   └── types/               # Hunt, Place, Item TypeScript types
-└── tests/                   # Playwright E2E tests
-```
-
-### Adding New Item Types
-
-To create a new item type:
-
-1. **Create the component**
-   
-   Create a new file in `src/components/Items/YourItem/`:
-   ```tsx
-   // src/components/Items/YourItem/YourItem.tsx
-   import { YourItemOptions } from '@/types/Item';
-   
-   interface YourItemProps {
-     options: YourItemOptions;
-     onKeywordFound?: (keyword: string) => void;
-   }
-   
-   export default function YourItem({ options, onKeywordFound }: YourItemProps) {
-     // Your implementation
-     return <div>Your item content</div>;
-   }
-   ```
-
-2. **Add TypeScript types**
-   
-   Update `src/types/Item.ts`:
-   ```typescript
-   export interface YourItemOptions {
-     // Your options
-   }
-   
-   export type ItemOptions = 
-     | KeywordOptions 
-     | ImageOptions
-     // ... other types
-     | YourItemOptions;
-   ```
-
-3. **Update the schema**
-   
-   Add validation in `src/lib/config-schema.ts`:
-   ```typescript
-   const yourItemSchema = z.object({
-     type: z.literal('your-item'),
-     options: z.object({
-       // Define your schema
-     })
-   });
-   ```
-
-4. **Register in ItemFactory**
-   
-   Update `src/components/Items/ItemFactory.tsx`:
-   ```typescript
-   import YourItem from './YourItem/YourItem';
-   
-   // Add to the switch statement
-   case 'your-item':
-     return <YourItem options={options} onKeywordFound={onKeywordFound} />;
-   ```
-
-5. **Add tests**
-   
-   Create `tests/your-item.spec.ts` with Playwright tests.
-
-### Running Tests
-
-```bash
-# Run all E2E tests
-npx playwright test
-
-# Run a specific test file
-npx playwright test tests/keyword.spec.ts
-
-# Run in UI mode
-npx playwright test --ui
-
-# Run a single project (matrix)
-npx playwright test --project="Mobile Chrome"
-```
-
-<details>
-<summary>Test devices</summary>
-
-Tests run on:
-- Mobile Chrome (Galaxy S24)
-- Mobile Firefox (Galaxy S24)  
-- Mobile Safari (iPhone 15 & iPhone SE 3rd gen)
-
-</details>
-
-### Code Quality
-
-```bash
-# Lint code
-npm run lint
-
-# Validate configuration
-npm run validate:config
-```
-
----
-
-## 🚀 Deployment
-
-### GitHub Pages (Default)
-
-1. **Enable GitHub Pages**
-   - Go to your repository → Settings → Pages
-   - Source: GitHub Actions
-
-2. **Deploy**
-   - Go to the "Actions" tab
-   - Run the workflow: **"Deploy Next.js site to Pages"**
-   - Your site will be available at `https://<username>.github.io/<repo>/`
-
-<details>
-<summary>Automatic deployment on push</summary>
-
-The workflow is configured to deploy automatically on pushes to the `main` branch. Check `.github/workflows/nextjs.yml` to customize.
-
-</details>
-
-### Other Static Hosting (Netlify, Vercel, etc.)
-
-The app exports as a static site. To build:
-
-```bash
+npx tsc --noEmit
+npm run lint:rally
 npm run build
 ```
 
-This creates an `out/` directory with static files.
+The rally tests cover all starting stations, full circular completion, GPS rejection,
+replay rejection, API/session validation, and SQLite recovery across restart. They
+use isolated test databases and synthetic coordinates, not real participant locations.
+Legacy browser tests use the examples page and a running Next server.
 
-<details>
-<summary><b>Netlify</b></summary>
+The original project and its assets retain their [CC BY-NC-SA 4.0 license](LICENSE).
+See [legacy documentation](docs/legacy-examples.md) for the original clue mechanisms.
 
-1. Connect your repository
-2. Build command: `npm run build`
-3. Publish directory: `out`
+The active counterclockwise route has 25 unique stations plus the return to the start. Stiftstraße (original station 15) was removed at the organizer’s request; the following stations were renumbered. Original GPX and notes are preserved in `data/routes/`. The simulator map displays the supplied walking track, including the western Ritterstraße waypoint. See [route details](docs/rally-route.md) for coordinates and the narrower GPS radii at nearby stations.
 
-Or use the Netlify CLI:
-```bash
-npm install -g netlify-cli
-netlify deploy --prod --dir=out
-```
+During a running round, players can reveal the next station name and map position after confirming a 60-second penalty. The server records each reveal once per step in SQLite and includes cumulative penalties in elapsed/final time. Reopening a revealed target is free; GPS confirmation remains mandatory. Start and return do not offer paid help because the start is already known. The local simulator uses the same help flow in its separate database. Placeholder clues no longer include explicit destination names.
 
-</details>
+## Live dashboard and Docker
 
-<details>
-<summary><b>Vercel</b></summary>
+Open `/dashboard/` for the password-protected read-only team display. Running times update every five seconds; finished results remain stored on the server with penalties. `/dashboard/?simulation=1` shows only local development simulations. Configure `RALLY_DASHBOARD_PASSWORD` and `RALLY_DASHBOARD_SESSION_SECRET` at runtime; neither belongs in source control. See [Docker deployment](docs/docker.md) for the Dockerfile, Compose service, persistent volume and reverse-proxy setup.
 
-```bash
-npm install -g vercel
-vercel --prod
-```
+The 100 allowed participant identifiers are defined in `data/team-codes.json` and listed in [team codes](docs/team-codes.md). Codes are validated server-side and are independent of the freely chosen start station. A code becomes permanently consumed when its start station is confirmed, including after finish or route changes. The start page offers joining an existing unfinished round using only its team code. Each device gets an independent revocable session, sharing progress, penalties and time; updates poll every three seconds. GPS challenges are device-specific and bound to the current step, so concurrent confirmations cannot skip a station. Logging out removes only that device; a started round continues and can be rejoined. Only unstarted reservations with no remaining devices may be reused.
 
-Or connect your repository through the Vercel dashboard.
+## Brief connection loss
 
-</details>
-
-<details>
-<summary><b>Custom CDN/Server</b></summary>
-
-After building, upload the `out/` directory to your server or CDN:
-
-```bash
-# Build
-npm run build
-
-# Upload to your server
-rsync -avz out/ user@server:/path/to/webroot/
-
-# Or use your CDN's CLI
-aws s3 sync out/ s3://your-bucket/ --delete
-```
-
-Make sure your server is configured to:
-- Serve `index.html` for directory requests
-- Handle 404s by serving the custom 404 page
-
-</details>
-
----
-
-## 📄 License
-
-This application is licensed under the [Creative Commons BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) License.
-
----
-
-## 🙏 Credits
-
-### Core Technologies
-- [Next.js](https://nextjs.org/) - React framework
-- [TypeScript](https://www.typescriptlang.org/) - Type safety
-- [Zod](https://zod.dev/) - Schema validation
-- [React](https://react.dev/) - UI library
-
-### Maps & Location
-- [OpenStreetMap](https://www.openstreetmap.org/) and [contributors](https://www.openstreetmap.org/copyright)
-- [Leaflet](https://leafletjs.com/) - Interactive maps
-- [React Leaflet](https://react-leaflet.js.org/) - React bindings
-- [Leaflet GeoSearch](https://github.com/smeijer/leaflet-geosearch) - Location search
-- [Nominatim](https://nominatim.openstreetmap.org/) - Geocoding
-
-### UI Components
-- [Bootstrap](https://getbootstrap.com/) & [React Bootstrap](https://react-bootstrap.github.io/)
-- [driver.js](https://driverjs.com/) - Onboarding tour
-- [Aaron Wong - React Card Flip](https://github.com/AaronCCWong/react-card-flip)
-- [Josh Mc Farlin - React Looking Glass](https://github.com/Josh-McFarlin/react-looking-glass)
-- [Oleg Nodlik - React Page Flip](https://github.com/Nodlik/react-pageflip)
-- [Shudhanshu Gunjal - React Scratch Card](https://github.com/gshudhanshu/react-scratchcard-v4)
-- [Poimandres - React Three Fiber](https://github.com/pmndrs/react-three-fiber)
-
-### Fonts (via [Fontsource](https://fontsource.org/))
-- [Inter Tight](https://fonts.google.com/specimen/Inter+Tight) by Rasmus Andersson
-- [Geist Mono](https://vercel.com/font) by Vercel
-
-### Development Tools
-- [Playwright](https://playwright.dev/) - E2E testing
-- [GitHub Actions](https://github.com/features/actions) - CI/CD
-- [GitHub Copilot](https://github.com/features/copilot) - AI assistance
-
-### Author
-All other credits belong to [Vincent CHALAMON](https://github.com/vincentchalamon) for the original idea, design and development of the application.
-
+An already open rally retains its latest hint and team state during a network interruption. The timer continues locally as an estimate; no offline station confirmations or paid reveals are queued. An offline banner explains the interruption. Clicking the station button without connectivity shows an explicit error without sending a confirmation; paid reveals and registration remain disabled until connectivity returns. Online/visibility events and the regular poll reload the authoritative team state, including confirmations that reached the server before their response was lost. A full page reload or opening the app without internet is not supported offline; map tiles also require connectivity unless already cached by the browser.

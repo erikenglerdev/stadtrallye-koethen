@@ -1,6 +1,89 @@
 {
   "hunts": [
     {
+      "slug": "koethen-beispiel",
+      "name": "Eine kleine Entdeckungstour durch Köthen",
+      "lang": "de",
+      "description": "Eine Beispiel-Schnitzeljagd durch Köthen (Anhalt). Sammle zwei Wörter und entdecke die letzte Station.",
+      "duration": "~15–20 min",
+      "coordinates": {
+        "lat": 51.75169,
+        "lng": 11.97444
+      },
+      "manuscript": "<p>Willkommen zu dieser kleinen Beispiel-Schnitzeljagd durch Köthen (Anhalt). Zwei fehlende Wörter verraten dir dein Ziel:</p><p><strong>{phrase}</strong></p><p>Los geht es am <strong>Rathaus Köthen</strong>: Öffne die Karte, wähle die Markierung 1 und öffne die Rätselkarte. Tippe auf die Antwort, um ein Wort zu sammeln.</p><p>An jeder Station erfährst du, welchen Ort du als Nächstes suchen sollst. Du kannst das Beispiel auch von zu Hause aus über die Ortssuche ausprobieren. Dein Standort wird dafür nicht geprüft.</p>",
+      "phrase": "Treffpunkt ist Schloss Köthen",
+      "defaultKeywords": [
+        "Treffpunkt",
+        "ist"
+      ],
+      "places": [
+        {
+          "name": "Rathaus Köthen",
+          "description": "<p>Dein kleines Abenteuer beginnt am Rathaus. Öffne die Rätselkarte und finde heraus, welches Gebäude gesucht ist.</p><p>Nächste Station: Suche auf der Karte nach <strong>St. Jakob</strong> und wähle den Ort aus.</p>",
+          "coordinates": {
+            "lat": 51.75169,
+            "lng": 11.97444
+          },
+          "item": {
+            "type": "clickable-image",
+            "options": {
+              "image": "/assets/koethen-sample/castle.svg",
+              "clickableAreas": [
+                {
+                  "top": "50%",
+                  "left": "15%",
+                  "width": "70%",
+                  "height": "25%",
+                  "action": {
+                    "type": "keyword",
+                    "options": {
+                      "keyword": "Schloss"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "St. Jakob",
+          "description": "<p>Willkommen an der zweiten Station. Öffne die Karte und ergänze den Stadtnamen, um das letzte Wort zu sammeln.</p><p>Lies anschließend im Manuskript nach, wohin es geht, und suche diesen Ort auf der Karte.</p>",
+          "coordinates": {
+            "lat": 51.75134,
+            "lng": 11.97371
+          },
+          "item": {
+            "type": "clickable-image",
+            "options": {
+              "image": "/assets/koethen-sample/city.svg",
+              "clickableAreas": [
+                {
+                  "top": "50%",
+                  "left": "15%",
+                  "width": "70%",
+                  "height": "25%",
+                  "action": {
+                    "type": "keyword",
+                    "options": {
+                      "keyword": "Köthen"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Schloss Köthen",
+          "description": "<p><strong>Geschafft!</strong> Du hast die letzte Station der Köthener Beispiel-Schnitzeljagd erreicht.</p><p>Deine vollständige Nachricht lautet: <strong>Treffpunkt ist Schloss Köthen</strong>. Hier endet die Beispielroute. Vor Ort ist kein Schatz versteckt.</p>",
+          "coordinates": {
+            "lat": 51.75383,
+            "lng": 11.97662
+          }
+        }
+      ]
+    },
+    {
       "slug": "le-secret-du-vieux-lille",
       "name": "Le Secret du Vieux-Lille",
       "lang": "fr",

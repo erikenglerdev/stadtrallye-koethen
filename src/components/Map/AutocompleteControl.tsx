@@ -41,11 +41,12 @@ export const AutocompleteControl: FunctionComponent<AutocompleteControlProps & F
     return new OpenStreetMapProvider({
       params: {
         'accept-language': language,
-        countrycodes: 'fr',
+        viewbox: `${locationBias.lng - 0.15},${locationBias.lat + 0.15},${locationBias.lng + 0.15},${locationBias.lat - 0.15}`,
+        bounded: 1,
         addressdetails: 1,
       },
     });
-  }, [language]);
+  }, [language, locationBias.lat, locationBias.lng]);
 
   const handleInput = useCallback((event: FormEvent<HTMLInputElement>) => {
     setInputValue((event.target as HTMLInputElement).value);

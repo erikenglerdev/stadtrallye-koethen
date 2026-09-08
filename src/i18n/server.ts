@@ -1,3 +1,4 @@
+import {previewLanguage} from '@/lib/local-preview';
 import { translations, Language, TranslationKey } from './translations';
 
 /**
@@ -18,5 +19,5 @@ export function getStaticTranslations(language: Language = 'fr') {
  * Get default translations (French) for static metadata
  */
 export function getDefaultTranslations() {
-  return getStaticTranslations('fr');
+  return getStaticTranslations(previewLanguage ?? 'fr');
 }

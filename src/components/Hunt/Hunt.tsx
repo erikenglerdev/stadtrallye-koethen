@@ -1,5 +1,7 @@
 "use client";
 
+import {desktopPreview} from "@/lib/local-preview";
+
 import {Nav, Tab} from "react-bootstrap";
 import {Manuscript} from "@/components/Manuscript/Manuscript";
 import React, {useContext, useEffect, useState} from "react";
@@ -57,7 +59,7 @@ const HuntHeader: React.FC<{hunt: HuntType; onHelp: () => void}> = ({hunt, onHel
   return (
     <div className={styles.header}>
       <div className={styles.headerRow}>
-        <Link href="/" className={styles.iconButton} aria-label={t('back')}>
+        <Link href="/beispiele/" className={styles.iconButton} aria-label={t('back')}>
           <Icon.ArrowLeft size={16} color="var(--color-ink)" strokeWidth={2} />
         </Link>
         <div className={styles.headerCenter}>
@@ -215,7 +217,7 @@ export const Hunt: React.FC<HuntProps> = ({hunt}) => {
     return <CompassLoader fullScreen text={t('loading')} />;
   }
 
-  if (!isMobile) {
+  if (!isMobile && !desktopPreview) {
     return (
       <div className={styles.errorContainer}>
         <div className={styles.errorContent}>
@@ -229,7 +231,7 @@ export const Hunt: React.FC<HuntProps> = ({hunt}) => {
     );
   }
 
-  if (locked) {
+  if (locked && !desktopPreview) {
     return (
       <div className={styles.errorContainer}>
         <div className={styles.errorContent}>

@@ -50,3 +50,8 @@ certificates
 .claude/settings.local.json
 .claude/worktrees/
 .mcp.json
+
+# Local rally database
+/.data/
+
+!.env.example

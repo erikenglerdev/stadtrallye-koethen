@@ -33,7 +33,7 @@ export class HuntApp {
     await this.page.addInitScript(() => {
       window.localStorage.setItem('onboarding_seen', '1');
     });
-    await this.page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+    await this.page.goto(url === "/" ? "/beispiele/" : url, { waitUntil: 'networkidle', timeout: 30000 });
     // Only wait for hunt title if we're navigating to a valid hunt page (not home or 404)
     if (url !== '/' && url !== '/invalid-hunt-url') {
       await expect(this.huntTitle).toBeVisible({ timeout: 10000 });

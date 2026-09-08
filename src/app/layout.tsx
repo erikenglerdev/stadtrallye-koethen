@@ -1,3 +1,4 @@
+import {previewLanguage} from "@/lib/local-preview";
 import type {Metadata, Viewport} from "next";
 import "@fontsource/inter-tight/400.css";
 import "@fontsource/inter-tight/500.css";
@@ -27,7 +28,7 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({children}: Readonly<{ children: ReactNode }>) {
   return (
-    <html style={{overscrollBehaviorY: "none"}} lang="en">
+    <html style={{overscrollBehaviorY: "none"}} lang={previewLanguage ?? "de"}>
     <body style={{overscrollBehaviorY: "none"}}>
     <Providers>
       {children}

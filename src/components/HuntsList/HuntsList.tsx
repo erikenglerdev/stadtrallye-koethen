@@ -1,5 +1,7 @@
 "use client";
 
+import {desktopPreview} from "@/lib/local-preview";
+
 import React, {useEffect, useState} from "react";
 import {Hunt} from "@/types/Hunt";
 import {Container, Modal} from "react-bootstrap";
@@ -55,7 +57,7 @@ export const HuntsList: React.FC<HuntsListProps> = ({hunts}) => {
     return <CompassLoader fullScreen text={t('loading')} />;
   }
 
-  if (!isMobile) {
+  if (!isMobile && !desktopPreview) {
     return (
       <div className={styles.errorContainer}>
         <div className={styles.errorContent}>
@@ -69,7 +71,7 @@ export const HuntsList: React.FC<HuntsListProps> = ({hunts}) => {
     );
   }
 
-  if (locked) {
+  if (locked && !desktopPreview) {
     return (
       <div className={styles.errorContainer}>
         <div className={styles.errorContent}>

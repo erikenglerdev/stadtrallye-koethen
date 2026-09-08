@@ -1,0 +1,1259 @@
+{
+  "title": "Köthener Stadtrallye",
+  "source": "data/routes/koethen-route-gegen-uhrzeigersinn.gpx",
+  "stations": [
+    {
+      "id": "place-26",
+      "number": 1,
+      "name": "Rathaus",
+      "lat": 51.75168725,
+      "lng": 11.974442100000001,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Ein Bote hat hier eine goldene Feder verloren. Findet den Ort, bevor der Wind sie weiterträgt.",
+      "sourceListIndex": 26,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-13",
+      "number": 2,
+      "name": "Springbrunnen",
+      "lat": 51.751311,
+      "lng": 11.974432,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Im Tagebuch einer Entdeckerin ist dieser Ort mit einem silbernen Stern markiert.",
+      "sourceListIndex": 13,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-15",
+      "number": 3,
+      "name": "Stadtbibliothek",
+      "lat": 51.750959,
+      "lng": 11.974805,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Hier wartet der nächste Teil einer ausgedachten Schatzkarte auf euch.",
+      "sourceListIndex": 15,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-22",
+      "number": 4,
+      "name": "Spargasse",
+      "lat": 51.749773,
+      "lng": 11.974424,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Ein freundlicher Stadtgeist hat an diesem Ort eine geheime Nachricht hinterlassen.",
+      "sourceListIndex": 22,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-16",
+      "number": 5,
+      "name": "Friedenspark",
+      "lat": 51.748731,
+      "lng": 11.974642,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Eine unsichtbare Uhr zählt hier die Schritte der Reisenden. Folgt ihrer erfundenen Spur.",
+      "sourceListIndex": 16,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-12",
+      "number": 6,
+      "name": "Feuerwehr Köthen",
+      "lat": 51.749458,
+      "lng": 11.975715,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Ein Bote hat hier eine goldene Feder verloren. Findet den Ort, bevor der Wind sie weiterträgt.",
+      "sourceListIndex": 12,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-17",
+      "number": 7,
+      "name": "Kuh aus Stein",
+      "lat": 51.75069,
+      "lng": 11.979175,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Eine unsichtbare Uhr zählt hier die Schritte der Reisenden. Folgt ihrer erfundenen Spur.",
+      "sourceListIndex": 17,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-01",
+      "number": 8,
+      "name": "Regenschirm – Bärplatz 2",
+      "lat": 51.75063,
+      "lng": 11.980231,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Ein Bote hat hier eine goldene Feder verloren. Findet den Ort, bevor der Wind sie weiterträgt.",
+      "sourceListIndex": 1,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-03",
+      "number": 9,
+      "name": "Rausch Reisen",
+      "lat": 51.75116,
+      "lng": 11.978212,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Im Tagebuch einer Entdeckerin ist dieser Ort mit einem silbernen Stern markiert.",
+      "sourceListIndex": 3,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-18",
+      "number": 10,
+      "name": "Kugelbrunnen",
+      "lat": 51.7513867,
+      "lng": 11.977702,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Hier wartet der nächste Teil einer ausgedachten Schatzkarte auf euch.",
+      "sourceListIndex": 18,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-21",
+      "number": 11,
+      "name": "Alte Post – advita Haus Am Schlosspark",
+      "lat": 51.753116,
+      "lng": 11.978418,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Ein freundlicher Stadtgeist hat an diesem Ort eine geheime Nachricht hinterlassen.",
+      "sourceListIndex": 21,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-27",
+      "number": 12,
+      "name": "Schloss Köthen mit Tourist-Information",
+      "lat": 51.753837,
+      "lng": 11.976718,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Hier wartet der nächste Teil einer ausgedachten Schatzkarte auf euch.",
+      "sourceListIndex": 27,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-09",
+      "number": 13,
+      "name": "Schlossplatz (Bushaltestelle)",
+      "lat": 51.753304,
+      "lng": 11.975208,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Eine unsichtbare Uhr zählt hier die Schritte der Reisenden. Folgt ihrer erfundenen Spur.",
+      "sourceListIndex": 9,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-10",
+      "number": 14,
+      "name": "St. Maria Himmelfahrt",
+      "lat": 51.753828,
+      "lng": 11.974062,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Ein Bote hat hier eine goldene Feder verloren. Findet den Ort, bevor der Wind sie weiterträgt.",
+      "sourceListIndex": 10,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-07",
+      "number": 15,
+      "name": "Gartenstraße",
+      "lat": 51.754443,
+      "lng": 11.973327,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Hier wartet der nächste Teil einer ausgedachten Schatzkarte auf euch.",
+      "sourceListIndex": 7,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-04",
+      "number": 16,
+      "name": "Großer Plan / Kleiner Plan",
+      "lat": 51.753735,
+      "lng": 11.972276,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Im Tagebuch einer Entdeckerin ist dieser Ort mit einem silbernen Stern markiert.",
+      "sourceListIndex": 4,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-05",
+      "number": 17,
+      "name": "Magdeburger Turm",
+      "lat": 51.753862,
+      "lng": 11.971418,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Eine unsichtbare Uhr zählt hier die Schritte der Reisenden. Folgt ihrer erfundenen Spur.",
+      "sourceListIndex": 5,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-19",
+      "number": 18,
+      "name": "Hahnemann-Haus",
+      "lat": 51.753282,
+      "lng": 11.97049,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Ein Bote hat hier eine goldene Feder verloren. Findet den Ort, bevor der Wind sie weiterträgt.",
+      "sourceListIndex": 19,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-24",
+      "number": 19,
+      "name": "Bachdenkmal",
+      "lat": 51.751348,
+      "lng": 11.97098,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Ein freundlicher Stadtgeist hat an diesem Ort eine geheime Nachricht hinterlassen.",
+      "sourceListIndex": 24,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-14",
+      "number": 20,
+      "name": "Nah & Gut",
+      "lat": 51.749928,
+      "lng": 11.972359,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Im Tagebuch einer Entdeckerin ist dieser Ort mit einem silbernen Stern markiert.",
+      "sourceListIndex": 14,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-20",
+      "number": 21,
+      "name": "Halli",
+      "lat": 51.750673,
+      "lng": 11.973357,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Hier wartet der nächste Teil einer ausgedachten Schatzkarte auf euch.",
+      "sourceListIndex": 20,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-25",
+      "number": 22,
+      "name": "St. Jakob",
+      "lat": 51.751321,
+      "lng": 11.973373,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Eine unsichtbare Uhr zählt hier die Schritte der Reisenden. Folgt ihrer erfundenen Spur.",
+      "sourceListIndex": 25,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-02",
+      "number": 23,
+      "name": "Wetterdenkmal",
+      "lat": 51.7515,
+      "lng": 11.976272,
+      "radiusMeters": 10,
+      "hint": "Platzhalterhinweis: Ein Bote hat hier eine goldene Feder verloren. Findet den Ort, bevor der Wind sie weiterträgt.",
+      "sourceListIndex": 2,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-11",
+      "number": 24,
+      "name": "Orangenes Ohr – HörPartner",
+      "lat": 51.751716,
+      "lng": 11.976495,
+      "radiusMeters": 10,
+      "hint": "Platzhalterhinweis: Ein freundlicher Stadtgeist hat an diesem Ort eine geheime Nachricht hinterlassen.",
+      "sourceListIndex": 11,
+      "locationVerifiedOnSite": false
+    },
+    {
+      "id": "place-06",
+      "number": 25,
+      "name": "Ritterstraße",
+      "lat": 51.752314,
+      "lng": 11.976514,
+      "radiusMeters": 30,
+      "hint": "Platzhalterhinweis: Eine unsichtbare Uhr zählt hier die Schritte der Reisenden. Folgt ihrer erfundenen Spur.",
+      "sourceListIndex": 6,
+      "locationVerifiedOnSite": false
+    }
+  ],
+  "track": [
+    {
+      "lat": 51.751545716167705,
+      "lng": 11.974456140411077
+    },
+    {
+      "lat": 51.751544,
+      "lng": 11.974411
+    },
+    {
+      "lat": 51.751562,
+      "lng": 11.974133
+    },
+    {
+      "lat": 51.751562,
+      "lng": 11.974133
+    },
+    {
+      "lat": 51.751495,
+      "lng": 11.974224
+    },
+    {
+      "lat": 51.751291,
+      "lng": 11.974303
+    },
+    {
+      "lat": 51.7513218,
+      "lng": 11.9743058
+    },
+    {
+      "lat": 51.75129396404475,
+      "lng": 11.97431651446178
+    },
+    {
+      "lat": 51.75129396404475,
+      "lng": 11.97431651446178
+    },
+    {
+      "lat": 51.7513218,
+      "lng": 11.9743058
+    },
+    {
+      "lat": 51.751291,
+      "lng": 11.974303
+    },
+    {
+      "lat": 51.751091,
+      "lng": 11.974381
+    },
+    {
+      "lat": 51.751172,
+      "lng": 11.974863
+    },
+    {
+      "lat": 51.751137,
+      "lng": 11.974875
+    },
+    {
+      "lat": 51.7510946,
+      "lng": 11.9748842
+    },
+    {
+      "lat": 51.750975397849444,
+      "lng": 11.974926260682782
+    },
+    {
+      "lat": 51.750975397849444,
+      "lng": 11.974926260682782
+    },
+    {
+      "lat": 51.7510946,
+      "lng": 11.9748842
+    },
+    {
+      "lat": 51.751137,
+      "lng": 11.974875
+    },
+    {
+      "lat": 51.750612,
+      "lng": 11.975048
+    },
+    {
+      "lat": 51.750535,
+      "lng": 11.975074
+    },
+    {
+      "lat": 51.750263,
+      "lng": 11.97427
+    },
+    {
+      "lat": 51.750012,
+      "lng": 11.974376
+    },
+    {
+      "lat": 51.749907,
+      "lng": 11.974397
+    },
+    {
+      "lat": 51.7499169,
+      "lng": 11.9743947
+    },
+    {
+      "lat": 51.74977291398256,
+      "lng": 11.97442285205229
+    },
+    {
+      "lat": 51.74977291398256,
+      "lng": 11.97442285205229
+    },
+    {
+      "lat": 51.7499169,
+      "lng": 11.9743947
+    },
+    {
+      "lat": 51.749907,
+      "lng": 11.974397
+    },
+    {
+      "lat": 51.749484,
+      "lng": 11.974454
+    },
+    {
+      "lat": 51.749556,
+      "lng": 11.975183
+    },
+    {
+      "lat": 51.749326,
+      "lng": 11.97529
+    },
+    {
+      "lat": 51.749292,
+      "lng": 11.974763
+    },
+    {
+      "lat": 51.749201,
+      "lng": 11.974691
+    },
+    {
+      "lat": 51.748874,
+      "lng": 11.974634
+    },
+    {
+      "lat": 51.7488608,
+      "lng": 11.974632
+    },
+    {
+      "lat": 51.748730928349836,
+      "lng": 11.974636151741064
+    },
+    {
+      "lat": 51.748730928349836,
+      "lng": 11.974636151741064
+    },
+    {
+      "lat": 51.7488608,
+      "lng": 11.974632
+    },
+    {
+      "lat": 51.748874,
+      "lng": 11.974634
+    },
+    {
+      "lat": 51.749201,
+      "lng": 11.974691
+    },
+    {
+      "lat": 51.749292,
+      "lng": 11.974763
+    },
+    {
+      "lat": 51.749326,
+      "lng": 11.97529
+    },
+    {
+      "lat": 51.7493255,
+      "lng": 11.9752898
+    },
+    {
+      "lat": 51.7492847,
+      "lng": 11.9753091
+    },
+    {
+      "lat": 51.7492621,
+      "lng": 11.9753198
+    },
+    {
+      "lat": 51.74932053604519,
+      "lng": 11.97576236109749
+    },
+    {
+      "lat": 51.74932053604519,
+      "lng": 11.97576236109749
+    },
+    {
+      "lat": 51.7492621,
+      "lng": 11.9753198
+    },
+    {
+      "lat": 51.7492847,
+      "lng": 11.9753091
+    },
+    {
+      "lat": 51.7493255,
+      "lng": 11.9752898
+    },
+    {
+      "lat": 51.749326,
+      "lng": 11.97529
+    },
+    {
+      "lat": 51.749556,
+      "lng": 11.975183
+    },
+    {
+      "lat": 51.749654,
+      "lng": 11.975645
+    },
+    {
+      "lat": 51.750069,
+      "lng": 11.977574
+    },
+    {
+      "lat": 51.750232,
+      "lng": 11.978258
+    },
+    {
+      "lat": 51.750396,
+      "lng": 11.978846
+    },
+    {
+      "lat": 51.750462,
+      "lng": 11.978988
+    },
+    {
+      "lat": 51.750592,
+      "lng": 11.97919
+    },
+    {
+      "lat": 51.750601,
+      "lng": 11.979241
+    },
+    {
+      "lat": 51.750716,
+      "lng": 11.979296
+    },
+    {
+      "lat": 51.7507049,
+      "lng": 11.9792877
+    },
+    {
+      "lat": 51.750669093464126,
+      "lng": 11.979266307388402
+    },
+    {
+      "lat": 51.750669093464126,
+      "lng": 11.979266307388402
+    },
+    {
+      "lat": 51.7507049,
+      "lng": 11.9792877
+    },
+    {
+      "lat": 51.750716,
+      "lng": 11.979296
+    },
+    {
+      "lat": 51.750853,
+      "lng": 11.979404
+    },
+    {
+      "lat": 51.750753,
+      "lng": 11.979756
+    },
+    {
+      "lat": 51.750616,
+      "lng": 11.980139
+    },
+    {
+      "lat": 51.7506289,
+      "lng": 11.9801096
+    },
+    {
+      "lat": 51.75059349077517,
+      "lng": 11.980187942909948
+    },
+    {
+      "lat": 51.75059349077517,
+      "lng": 11.980187942909948
+    },
+    {
+      "lat": 51.7506289,
+      "lng": 11.9801096
+    },
+    {
+      "lat": 51.750616,
+      "lng": 11.980139
+    },
+    {
+      "lat": 51.750753,
+      "lng": 11.979756
+    },
+    {
+      "lat": 51.751003,
+      "lng": 11.978824
+    },
+    {
+      "lat": 51.751088,
+      "lng": 11.978313
+    },
+    {
+      "lat": 51.7510878,
+      "lng": 11.9783129
+    },
+    {
+      "lat": 51.751171556650064,
+      "lng": 11.978266869559585
+    },
+    {
+      "lat": 51.751171556650064,
+      "lng": 11.978266869559585
+    },
+    {
+      "lat": 51.7516506,
+      "lng": 11.9780036
+    },
+    {
+      "lat": 51.7514565,
+      "lng": 11.9777314
+    },
+    {
+      "lat": 51.7514429,
+      "lng": 11.9777248
+    },
+    {
+      "lat": 51.751385891073355,
+      "lng": 11.977710296929061
+    },
+    {
+      "lat": 51.751385891073355,
+      "lng": 11.977710296929061
+    },
+    {
+      "lat": 51.7514429,
+      "lng": 11.9777248
+    },
+    {
+      "lat": 51.7514565,
+      "lng": 11.9777314
+    },
+    {
+      "lat": 51.7516506,
+      "lng": 11.9780036
+    },
+    {
+      "lat": 51.751433,
+      "lng": 11.978123
+    },
+    {
+      "lat": 51.752351,
+      "lng": 11.977628
+    },
+    {
+      "lat": 51.752367,
+      "lng": 11.977555
+    },
+    {
+      "lat": 51.752345,
+      "lng": 11.977373
+    },
+    {
+      "lat": 51.752633,
+      "lng": 11.977176
+    },
+    {
+      "lat": 51.752687,
+      "lng": 11.97711
+    },
+    {
+      "lat": 51.752687,
+      "lng": 11.97711
+    },
+    {
+      "lat": 51.752822,
+      "lng": 11.977097
+    },
+    {
+      "lat": 51.752822,
+      "lng": 11.977097
+    },
+    {
+      "lat": 51.752833,
+      "lng": 11.97721
+    },
+    {
+      "lat": 51.753019,
+      "lng": 11.978458
+    },
+    {
+      "lat": 51.753026,
+      "lng": 11.9784836
+    },
+    {
+      "lat": 51.753021765047485,
+      "lng": 11.97845667502667
+    },
+    {
+      "lat": 51.753021765047485,
+      "lng": 11.97845667502667
+    },
+    {
+      "lat": 51.7528952,
+      "lng": 11.977652
+    },
+    {
+      "lat": 51.7531306,
+      "lng": 11.97756
+    },
+    {
+      "lat": 51.753216,
+      "lng": 11.977529
+    },
+    {
+      "lat": 51.753571,
+      "lng": 11.977335
+    },
+    {
+      "lat": 51.753728,
+      "lng": 11.976896
+    },
+    {
+      "lat": 51.7537281,
+      "lng": 11.9768962
+    },
+    {
+      "lat": 51.75383936865181,
+      "lng": 11.976892253446298
+    },
+    {
+      "lat": 51.75383936865181,
+      "lng": 11.976892253446298
+    },
+    {
+      "lat": 51.7537281,
+      "lng": 11.9768962
+    },
+    {
+      "lat": 51.753728,
+      "lng": 11.976896
+    },
+    {
+      "lat": 51.753728,
+      "lng": 11.975619
+    },
+    {
+      "lat": 51.753512,
+      "lng": 11.9756
+    },
+    {
+      "lat": 51.753343,
+      "lng": 11.975531
+    },
+    {
+      "lat": 51.753402,
+      "lng": 11.975201
+    },
+    {
+      "lat": 51.753404,
+      "lng": 11.97519
+    },
+    {
+      "lat": 51.753417,
+      "lng": 11.975112
+    },
+    {
+      "lat": 51.753408,
+      "lng": 11.975022
+    },
+    {
+      "lat": 51.7534076,
+      "lng": 11.9750215
+    },
+    {
+      "lat": 51.7533071,
+      "lng": 11.9751445
+    },
+    {
+      "lat": 51.75328641738574,
+      "lng": 11.975168557399808
+    },
+    {
+      "lat": 51.75328641738574,
+      "lng": 11.975168557399808
+    },
+    {
+      "lat": 51.7533071,
+      "lng": 11.9751445
+    },
+    {
+      "lat": 51.7534076,
+      "lng": 11.9750215
+    },
+    {
+      "lat": 51.753408,
+      "lng": 11.975022
+    },
+    {
+      "lat": 51.753441,
+      "lng": 11.974956
+    },
+    {
+      "lat": 51.753696,
+      "lng": 11.973809
+    },
+    {
+      "lat": 51.753927,
+      "lng": 11.973927
+    },
+    {
+      "lat": 51.7539431,
+      "lng": 11.9739356
+    },
+    {
+      "lat": 51.75385399320052,
+      "lng": 11.973898610962523
+    },
+    {
+      "lat": 51.75385399320052,
+      "lng": 11.973898610962523
+    },
+    {
+      "lat": 51.7539431,
+      "lng": 11.9739356
+    },
+    {
+      "lat": 51.753927,
+      "lng": 11.973927
+    },
+    {
+      "lat": 51.753696,
+      "lng": 11.973809
+    },
+    {
+      "lat": 51.7536959,
+      "lng": 11.9738094
+    },
+    {
+      "lat": 51.75367801961667,
+      "lng": 11.973885412040524
+    },
+    {
+      "lat": 51.75367801961667,
+      "lng": 11.973885412040524
+    },
+    {
+      "lat": 51.7536959,
+      "lng": 11.9738094
+    },
+    {
+      "lat": 51.753696,
+      "lng": 11.973809
+    },
+    {
+      "lat": 51.753927,
+      "lng": 11.973927
+    },
+    {
+      "lat": 51.754361,
+      "lng": 11.974069
+    },
+    {
+      "lat": 51.75443743386965,
+      "lng": 11.973325506904375
+    },
+    {
+      "lat": 51.75443743386965,
+      "lng": 11.973325506904375
+    },
+    {
+      "lat": 51.754438,
+      "lng": 11.97332
+    },
+    {
+      "lat": 51.754472,
+      "lng": 11.972549
+    },
+    {
+      "lat": 51.753889,
+      "lng": 11.972477
+    },
+    {
+      "lat": 51.753754,
+      "lng": 11.972479
+    },
+    {
+      "lat": 51.7537373,
+      "lng": 11.9723463
+    },
+    {
+      "lat": 51.75372750017311,
+      "lng": 11.972278842939197
+    },
+    {
+      "lat": 51.75372750017311,
+      "lng": 11.972278842939197
+    },
+    {
+      "lat": 51.753727,
+      "lng": 11.9722754
+    },
+    {
+      "lat": 51.7536945,
+      "lng": 11.9720596
+    },
+    {
+      "lat": 51.753695,
+      "lng": 11.97206
+    },
+    {
+      "lat": 51.753777,
+      "lng": 11.972009
+    },
+    {
+      "lat": 51.753797,
+      "lng": 11.971881
+    },
+    {
+      "lat": 51.753853,
+      "lng": 11.971794
+    },
+    {
+      "lat": 51.753879,
+      "lng": 11.971706
+    },
+    {
+      "lat": 51.753884,
+      "lng": 11.971607
+    },
+    {
+      "lat": 51.753867,
+      "lng": 11.971494
+    },
+    {
+      "lat": 51.753911,
+      "lng": 11.971413
+    },
+    {
+      "lat": 51.7539111,
+      "lng": 11.9714129
+    },
+    {
+      "lat": 51.75388407885333,
+      "lng": 11.97137591261222
+    },
+    {
+      "lat": 51.75388407885333,
+      "lng": 11.97137591261222
+    },
+    {
+      "lat": 51.7538341,
+      "lng": 11.9713075
+    },
+    {
+      "lat": 51.753834,
+      "lng": 11.971308
+    },
+    {
+      "lat": 51.753956,
+      "lng": 11.971118
+    },
+    {
+      "lat": 51.753882,
+      "lng": 11.97101
+    },
+    {
+      "lat": 51.753414,
+      "lng": 11.970461
+    },
+    {
+      "lat": 51.753293,
+      "lng": 11.970315
+    },
+    {
+      "lat": 51.7532932,
+      "lng": 11.9703152
+    },
+    {
+      "lat": 51.75333794913259,
+      "lng": 11.970369344918511
+    },
+    {
+      "lat": 51.75333794913259,
+      "lng": 11.970369344918511
+    },
+    {
+      "lat": 51.7532932,
+      "lng": 11.9703152
+    },
+    {
+      "lat": 51.753293,
+      "lng": 11.970315
+    },
+    {
+      "lat": 51.753204,
+      "lng": 11.970281
+    },
+    {
+      "lat": 51.751423,
+      "lng": 11.970791
+    },
+    {
+      "lat": 51.75143881636501,
+      "lng": 11.970957488052747
+    },
+    {
+      "lat": 51.75143881636501,
+      "lng": 11.970957488052747
+    },
+    {
+      "lat": 51.751423,
+      "lng": 11.970791
+    },
+    {
+      "lat": 51.751423,
+      "lng": 11.970791
+    },
+    {
+      "lat": 51.750278,
+      "lng": 11.97112
+    },
+    {
+      "lat": 51.750191,
+      "lng": 11.971116
+    },
+    {
+      "lat": 51.749899,
+      "lng": 11.97224
+    },
+    {
+      "lat": 51.74987703461796,
+      "lng": 11.972324383675994
+    },
+    {
+      "lat": 51.74987703461796,
+      "lng": 11.972324383675994
+    },
+    {
+      "lat": 51.749659,
+      "lng": 11.973162
+    },
+    {
+      "lat": 51.750113,
+      "lng": 11.973318
+    },
+    {
+      "lat": 51.750435,
+      "lng": 11.973365
+    },
+    {
+      "lat": 51.750579,
+      "lng": 11.973409
+    },
+    {
+      "lat": 51.7505794,
+      "lng": 11.9734088
+    },
+    {
+      "lat": 51.75065775930623,
+      "lng": 11.973444438415239
+    },
+    {
+      "lat": 51.75065775930623,
+      "lng": 11.973444438415239
+    },
+    {
+      "lat": 51.7505794,
+      "lng": 11.9734088
+    },
+    {
+      "lat": 51.750579,
+      "lng": 11.973409
+    },
+    {
+      "lat": 51.750749,
+      "lng": 11.973504
+    },
+    {
+      "lat": 51.750816,
+      "lng": 11.973425
+    },
+    {
+      "lat": 51.750849,
+      "lng": 11.973385
+    },
+    {
+      "lat": 51.751157,
+      "lng": 11.973316
+    },
+    {
+      "lat": 51.75130665360762,
+      "lng": 11.973264410009909
+    },
+    {
+      "lat": 51.75130665360762,
+      "lng": 11.973264410009909
+    },
+    {
+      "lat": 51.751508,
+      "lng": 11.973195
+    },
+    {
+      "lat": 51.751539,
+      "lng": 11.973382
+    },
+    {
+      "lat": 51.751554,
+      "lng": 11.973655
+    },
+    {
+      "lat": 51.751562,
+      "lng": 11.974133
+    },
+    {
+      "lat": 51.751562,
+      "lng": 11.974133
+    },
+    {
+      "lat": 51.751544,
+      "lng": 11.974411
+    },
+    {
+      "lat": 51.751577,
+      "lng": 11.975279
+    },
+    {
+      "lat": 51.751673,
+      "lng": 11.976251
+    },
+    {
+      "lat": 51.751658,
+      "lng": 11.9761106
+    },
+    {
+      "lat": 51.75150295370718,
+      "lng": 11.976103507903549
+    },
+    {
+      "lat": 51.75150295370718,
+      "lng": 11.976103507903549
+    },
+    {
+      "lat": 51.751658,
+      "lng": 11.9761106
+    },
+    {
+      "lat": 51.751673,
+      "lng": 11.976251
+    },
+    {
+      "lat": 51.751689,
+      "lng": 11.976397
+    },
+    {
+      "lat": 51.7516893,
+      "lng": 11.9763969
+    },
+    {
+      "lat": 51.751732355293974,
+      "lng": 11.976469792709883
+    },
+    {
+      "lat": 51.751732355293974,
+      "lng": 11.976469792709883
+    },
+    {
+      "lat": 51.7517336,
+      "lng": 11.9764719
+    },
+    {
+      "lat": 51.751734,
+      "lng": 11.976472
+    },
+    {
+      "lat": 51.751813,
+      "lng": 11.976501
+    },
+    {
+      "lat": 51.751896,
+      "lng": 11.976499
+    },
+    {
+      "lat": 51.75231384985803,
+      "lng": 11.976491669300735
+    },
+    {
+      "lat": 51.75231384985803,
+      "lng": 11.976491669300735
+    },
+    {
+      "lat": 51.752352,
+      "lng": 11.976491
+    },
+    {
+      "lat": 51.752356,
+      "lng": 11.976514
+    },
+    {
+      "lat": 51.752317,
+      "lng": 11.97626
+    },
+    {
+      "lat": 51.752292,
+      "lng": 11.975588
+    },
+    {
+      "lat": 51.752323,
+      "lng": 11.97543
+    },
+    {
+      "lat": 51.752314,
+      "lng": 11.975141
+    },
+    {
+      "lat": 51.752267,
+      "lng": 11.974937
+    },
+    {
+      "lat": 51.7522686,
+      "lng": 11.9749305
+    },
+    {
+      "lat": 51.75226509592908,
+      "lng": 11.974916219058391
+    },
+    {
+      "lat": 51.7522355,
+      "lng": 11.9747956
+    },
+    {
+      "lat": 51.752236,
+      "lng": 11.974796
+    },
+    {
+      "lat": 51.751918,
+      "lng": 11.974295
+    },
+    {
+      "lat": 51.751784,
+      "lng": 11.974046
+    },
+    {
+      "lat": 51.751745,
+      "lng": 11.974007
+    },
+    {
+      "lat": 51.751634,
+      "lng": 11.974022
+    },
+    {
+      "lat": 51.751603,
+      "lng": 11.974045
+    },
+    {
+      "lat": 51.751562,
+      "lng": 11.974133
+    },
+    {
+      "lat": 51.751562,
+      "lng": 11.974133
+    },
+    {
+      "lat": 51.751544,
+      "lng": 11.974411
+    },
+    {
+      "lat": 51.751545716167705,
+      "lng": 11.974456140411077
+    }
+  ]
+}
