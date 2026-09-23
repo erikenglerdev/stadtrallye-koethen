@@ -9,7 +9,7 @@
       "lat": 51.75168725,
       "lng": 11.974442100000001,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Ein Bote hat hier eine goldene Feder verloren. Findet den Ort, bevor der Wind sie weiterträgt.",
+      "hint": "Findet den Ort, an dem Worte einen amtlichen Charakter tragen",
       "sourceListIndex": 26,
       "locationVerifiedOnSite": false
     },
@@ -20,7 +20,7 @@
       "lat": 51.751311,
       "lng": 11.974432,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Im Tagebuch einer Entdeckerin ist dieser Ort mit einem silbernen Stern markiert.",
+      "hint": "Findet den Wasserlauf umgeben von Bäumen.",
       "sourceListIndex": 13,
       "locationVerifiedOnSite": false
     },
@@ -31,9 +31,15 @@
       "lat": 51.750959,
       "lng": 11.974805,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Hier wartet der nächste Teil einer ausgedachten Schatzkarte auf euch.",
+      "hint": "Finde das Gebäude vor dem Halli steht:",
       "sourceListIndex": 15,
-      "locationVerifiedOnSite": false
+      "locationVerifiedOnSite": false,
+      "hintImage": {
+        "src": "/assets/rally-clues/ee92e1af2c39dec1.jpg",
+        "alt": "Zeichnung eines Gebäudes mit Halli und einem Stapel Bücher davor.",
+        "width": 671,
+        "height": 800
+      }
     },
     {
       "id": "place-22",
@@ -42,7 +48,7 @@
       "lat": 51.749773,
       "lng": 11.974424,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Ein freundlicher Stadtgeist hat an diesem Ort eine geheime Nachricht hinterlassen.",
+      "hint": "\"wenn ein Sachse sein Geld haben will geht er nicht zur deutschen Bank sondern zur…\" haltet dort zwischen zwei Mauern",
       "sourceListIndex": 22,
       "locationVerifiedOnSite": false
     },
@@ -53,7 +59,7 @@
       "lat": 51.748731,
       "lng": 11.974642,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Eine unsichtbare Uhr zählt hier die Schritte der Reisenden. Folgt ihrer erfundenen Spur.",
+      "hint": "Begebt euch in den Friedenspark und findet dort ein Denkmal, für das die alten Ägypter bekannt waren. Es ist keine Pyramide, aber es besitzt eine pyramidenförmige Spitze.",
       "sourceListIndex": 16,
       "locationVerifiedOnSite": false
     },
@@ -64,9 +70,15 @@
       "lat": 51.749458,
       "lng": 11.975715,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Ein Bote hat hier eine goldene Feder verloren. Findet den Ort, bevor der Wind sie weiterträgt.",
+      "hint": "Findet das Gebäude an dem folgendes abgebildet ist:",
       "sourceListIndex": 12,
-      "locationVerifiedOnSite": false
+      "locationVerifiedOnSite": false,
+      "hintImage": {
+        "src": "/assets/rally-clues/60dfce5266a35bca.jpg",
+        "alt": "Rundes schwarz-weißes Zeichen mit vier Darstellungen: retten, löschen, bergen und schützen.",
+        "width": 460,
+        "height": 466
+      }
     },
     {
       "id": "place-17",
@@ -75,7 +87,7 @@
       "lat": 51.75069,
       "lng": 11.979175,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Eine unsichtbare Uhr zählt hier die Schritte der Reisenden. Folgt ihrer erfundenen Spur.",
+      "hint": "Folge der Bärteichpromenade gen Sonnenaufgang  bis zum nächsten Tier.",
       "sourceListIndex": 17,
       "locationVerifiedOnSite": false
     },
@@ -86,7 +98,7 @@
       "lat": 51.75063,
       "lng": 11.980231,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Ein Bote hat hier eine goldene Feder verloren. Findet den Ort, bevor der Wind sie weiterträgt.",
+      "hint": "Schutz vor Regen findest du unter mir, orange leuchte ich entgegen dir.",
       "sourceListIndex": 1,
       "locationVerifiedOnSite": false
     },
@@ -97,9 +109,10 @@
       "lat": 51.75116,
       "lng": 11.978212,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Im Tagebuch einer Entdeckerin ist dieser Ort mit einem silbernen Stern markiert.",
+      "hint": "Reist hinaus, wo neue Abenteuer warten,\nAuf unbekannten Wegen beginnt eure Fahrt.\nUnterwegs begegnet euch so manche Spur,\nSucht sie gut, denn sie führt euch weiter.\nClever müsst ihr sein, um sie zu entdecken,\nHaltet die Augen offen und folgt den ersten Zeichen.\n\nRichtung unbekannt, doch das Ziel ist nah,\nEilt nun weiter, Schritt für Schritt.\nIrgendwo wartet bereits die nächste Spur,\nSie führt euch weiter auf eurer Tour.\nEntdeckt, wohin der Weg euch bringt,\nNur wer genau liest, wird es erkennen.",
       "sourceListIndex": 3,
-      "locationVerifiedOnSite": false
+      "locationVerifiedOnSite": false,
+      "hintLayout": "verse"
     },
     {
       "id": "place-18",
@@ -108,7 +121,7 @@
       "lat": 51.7513867,
       "lng": 11.977702,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Hier wartet der nächste Teil einer ausgedachten Schatzkarte auf euch.",
+      "hint": "Folgt Tim und Struppi dem Weg der in Richtung Waffeln und Schokolade führt und nehmt die nächste links zum Ort wo  Riesen mit Murmeln spielen.",
       "sourceListIndex": 18,
       "locationVerifiedOnSite": false
     },
@@ -119,18 +132,53 @@
       "lat": 51.753116,
       "lng": 11.978418,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Ein freundlicher Stadtgeist hat an diesem Ort eine geheime Nachricht hinterlassen.",
+      "hint": "An der ollen 16 Ost schrieb man früher Buchstaben auf Papier.",
       "sourceListIndex": 21,
-      "locationVerifiedOnSite": false
+      "locationVerifiedOnSite": false,
+      "hintParts": [
+        {
+          "text": "An der "
+        },
+        {
+          "text": "ollen",
+          "bold": true
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "16",
+          "bold": true,
+          "underline": true
+        },
+        {
+          "text": " O",
+          "bold": true
+        },
+        {
+          "text": "st",
+          "bold": true
+        },
+        {
+          "text": " schrieb man früher "
+        },
+        {
+          "text": "Buchstabe",
+          "underline": true
+        },
+        {
+          "text": "n auf Papier."
+        }
+      ]
     },
     {
       "id": "place-27",
       "number": 12,
       "name": "Schloss Köthen mit Tourist-Information",
-      "lat": 51.753837,
-      "lng": 11.976718,
-      "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Hier wartet der nächste Teil einer ausgedachten Schatzkarte auf euch.",
+      "lat": 51.753888889,
+      "lng": 11.975194444,
+      "radiusMeters": 60,
+      "hint": "\"Eine Kuh die macht Muh, Viele Kühe machen Mühe! Findet zwei (royale) Kühe die auf einer Wiese grasen.\"",
       "sourceListIndex": 27,
       "locationVerifiedOnSite": false
     },
@@ -141,7 +189,7 @@
       "lat": 51.753304,
       "lng": 11.975208,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Eine unsichtbare Uhr zählt hier die Schritte der Reisenden. Folgt ihrer erfundenen Spur.",
+      "hint": "Sucht den nächstgelgenen Ort, an dem die großen Wagen halten, um Reisende auf ihrem Weg in Richtung Fachbereich 5 mitzunehmen.\nDort wartet die nächste Spur auf euch.",
       "sourceListIndex": 9,
       "locationVerifiedOnSite": false
     },
@@ -152,7 +200,7 @@
       "lat": 51.753828,
       "lng": 11.974062,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Ein Bote hat hier eine goldene Feder verloren. Findet den Ort, bevor der Wind sie weiterträgt.",
+      "hint": "Der Tag nach dem das gesuchte Gebäude benannt ist, ist auch bekannt für Bollerwagen, Bier und Männerausflüge",
       "sourceListIndex": 10,
       "locationVerifiedOnSite": false
     },
@@ -163,9 +211,15 @@
       "lat": 51.754443,
       "lng": 11.973327,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Hier wartet der nächste Teil einer ausgedachten Schatzkarte auf euch.",
+      "hint": "Findet dort wo euch das Rebusrätsel   hinführt, das Haus mit den goldenen Fenstern.",
       "sourceListIndex": 7,
-      "locationVerifiedOnSite": false
+      "locationVerifiedOnSite": false,
+      "hintImage": {
+        "src": "/assets/rally-clues/53f596e34e2824a2.png",
+        "alt": "Rebus: Garnrolle mit durchgestrichenem N, Pluszeichen, englische Flagge über der Zahl 10, Pluszeichen und eine Straße.",
+        "width": 1920,
+        "height": 1080
+      }
     },
     {
       "id": "place-04",
@@ -174,7 +228,7 @@
       "lat": 51.753735,
       "lng": 11.972276,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Im Tagebuch einer Entdeckerin ist dieser Ort mit einem silbernen Stern markiert.",
+      "hint": "Nicht klein, nicht groß – doch mittendrin,\nzwischen zwei Plänen liegt euer Gewinn.\nHaltet auf dem  Weg, der beide verbindet,\nDort ist, wo ihr  die nächste Spur findet.",
       "sourceListIndex": 4,
       "locationVerifiedOnSite": false
     },
@@ -185,9 +239,15 @@
       "lat": 51.753862,
       "lng": 11.971418,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Eine unsichtbare Uhr zählt hier die Schritte der Reisenden. Folgt ihrer erfundenen Spur.",
+      "hint": "Findet das bronzene Abbild der Freundin vom Turm Halli: Magda.",
       "sourceListIndex": 5,
-      "locationVerifiedOnSite": false
+      "locationVerifiedOnSite": false,
+      "hintImage": {
+        "src": "/assets/rally-clues/2684a25236e807eb.jpg",
+        "alt": "Zeichnung der beiden Turmfiguren Halli und Magda.",
+        "width": 289,
+        "height": 400
+      }
     },
     {
       "id": "place-19",
@@ -196,7 +256,7 @@
       "lat": 51.753282,
       "lng": 11.97049,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Ein Bote hat hier eine goldene Feder verloren. Findet den Ort, bevor der Wind sie weiterträgt.",
+      "hint": "Findet das Haus des Mannes, der einen großen Einfluss auf die alternative Heilkunst dieser Welt hatte.",
       "sourceListIndex": 19,
       "locationVerifiedOnSite": false
     },
@@ -207,7 +267,7 @@
       "lat": 51.751348,
       "lng": 11.97098,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Ein freundlicher Stadtgeist hat an diesem Ort eine geheime Nachricht hinterlassen.",
+      "hint": "Eine steinerne Erinnerung an den Geber des städtischen Beinamens.",
       "sourceListIndex": 24,
       "locationVerifiedOnSite": false
     },
@@ -218,7 +278,7 @@
       "lat": 51.749928,
       "lng": 11.972359,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Im Tagebuch einer Entdeckerin ist dieser Ort mit einem silbernen Stern markiert.",
+      "hint": "Das Gute liegt oft nah.",
       "sourceListIndex": 14,
       "locationVerifiedOnSite": false
     },
@@ -229,7 +289,7 @@
       "lat": 51.750673,
       "lng": 11.973357,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Hier wartet der nächste Teil einer ausgedachten Schatzkarte auf euch.",
+      "hint": "Die große Version von Halli sieht man schon von weitem, findet seine kleine bronzene Version.",
       "sourceListIndex": 20,
       "locationVerifiedOnSite": false
     },
@@ -240,7 +300,7 @@
       "lat": 51.751321,
       "lng": 11.973373,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Eine unsichtbare Uhr zählt hier die Schritte der Reisenden. Folgt ihrer erfundenen Spur.",
+      "hint": "An meiner Seite gibt es zwei Türen. vier Augen schauen auf sechs Stufen und acht weitere in die Ferne. Wo bin ich?",
       "sourceListIndex": 25,
       "locationVerifiedOnSite": false
     },
@@ -251,29 +311,18 @@
       "lat": 51.7515,
       "lng": 11.976272,
       "radiusMeters": 10,
-      "hint": "Platzhalterhinweis: Ein Bote hat hier eine goldene Feder verloren. Findet den Ort, bevor der Wind sie weiterträgt.",
+      "hint": "Thermometer, Barometer und Hydrometer, alles an einem Ort",
       "sourceListIndex": 2,
       "locationVerifiedOnSite": false
     },
     {
-      "id": "place-11",
-      "number": 24,
-      "name": "Orangenes Ohr – HörPartner",
-      "lat": 51.751716,
-      "lng": 11.976495,
-      "radiusMeters": 10,
-      "hint": "Platzhalterhinweis: Ein freundlicher Stadtgeist hat an diesem Ort eine geheime Nachricht hinterlassen.",
-      "sourceListIndex": 11,
-      "locationVerifiedOnSite": false
-    },
-    {
       "id": "place-06",
-      "number": 25,
+      "number": 24,
       "name": "Ritterstraße",
       "lat": 51.752314,
       "lng": 11.976514,
       "radiusMeters": 30,
-      "hint": "Platzhalterhinweis: Eine unsichtbare Uhr zählt hier die Schritte der Reisenden. Folgt ihrer erfundenen Spur.",
+      "hint": "Platzhalterhinweis (Ritterstraße): Eine unsichtbare Uhr zählt hier die Schritte der Reisenden. Folgt ihrer erfundenen Spur.",
       "sourceListIndex": 6,
       "locationVerifiedOnSite": false
     }

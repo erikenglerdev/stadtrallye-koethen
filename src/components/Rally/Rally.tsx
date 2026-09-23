@@ -7,6 +7,7 @@ import type {RallyView} from '@/rally/types';
 import {simulatePositionSamples} from '@/rally/simulation';
 import {collectPositionSamples} from '@/rally/gps';
 import styles from './Rally.module.css';
+import RallyHint from './RallyHint';
 const RallyMap = dynamic(() => import('./RallyMap'), {ssr: false, loading: () => <p>Karte wird geladen …</p>});
 function duration(ms: number) {
   const s = Math.max(0, Math.floor(ms / 1000));
@@ -101,7 +102,7 @@ export default function Rally({simulation = false}: {simulation?: boolean}) {
   }
   const run = view?.run;
   return <main className={styles.page}>
-    <header className={styles.header}><span className={styles.eyebrow}>KÖTHEN · ZU FUSS ENTDECKEN</span><h1>{view?.title ?? 'Köthener Stadtrallye'}</h1><p>Eine Stadt. {view?.total ?? 25} Stationen. Eure gemeinsame Runde.</p></header>
+    <header className={styles.header}><span className={styles.eyebrow}>KÖTHEN · ZU FUSS ENTDECKEN</span><h1>{view?.title ?? 'Köthener Stadtrallye'}</h1><p>Eine Stadt. {view?.total ?? 24} Stationen. Eure gemeinsame Runde.</p></header>
     {process.env.NODE_ENV === 'development' && <section className={styles.simulation} aria-label="Lokaler Testmodus">
       <strong>{simulation ? 'TESTMODUS AKTIV · GPS wird simuliert' : 'Lokal ausprobieren'}</strong>
       <p>{simulation ? 'Jeder Klick setzt euch an die richtige nächste Station. Die Prüfung dauert etwa fünf Sekunden. Diese Testrunde ist von echten Runden getrennt.' : 'Spielt alle Stationen ohne echten Standortzugriff durch.'}</p>
@@ -124,9 +125,8 @@ export default function Rally({simulation = false}: {simulation?: boolean}) {
       {tab === 'map' ? <section className={styles.card}><RallyMap position={position} track={simulation ? view?.simulationTrack : undefined} target={run.revealedTarget}/><p className={styles.muted}>{simulation ? 'Die Linie zeigt euren vorgegebenen GPX-Rundweg. ' : ''}Die Karte dient zur Orientierung. {run.revealedTarget ? `Euer aufgedecktes Ziel: ${run.revealedTarget.number} · ${run.revealedTarget.name}. Es ist orange markiert.` : 'Zielstationen werden erst nach Nutzung der Hilfe markiert.'} Euer letzter geprüfter Standort erscheint nach einer Standortmessung. Neue Kartenausschnitte benötigen Internet.</p></section> : <section className={styles.card}>
         <span className={styles.eyebrow}>{run.status === 'finished' ? 'RUNDE GESCHAFFT' : run.status === 'ready' ? 'BEREIT FÜR DEN START' : run.returning ? 'ZURÜCK ZUM START' : `HINWEIS ${run.confirmed} · WEITER GEHT’S`}</span>
         <h2>{run.status === 'finished' ? 'Wieder am Ziel!' : run.returning ? 'Schließt eure Runde ab.' : run.status === 'ready' ? 'Seid ihr am Startpunkt?' : 'Findet eure nächste Station.'}</h2>
-        <p className={styles.hint}>{run.hint}</p>
+        <RallyHint text={run.hint} parts={run.hintParts} image={run.hintImage} layout={run.hintLayout}/>
         {run.status === 'finished' && <p>Alle {view.total} Stationen und die Rückkehr zum Start wurden bestätigt. Eure Gesamtzeit: <strong>{duration(elapsed)}</strong>.</p>}
-        {run.status === 'running' && <p className={styles.muted}>Die Hinweise sind fiktive Platzhalter und werden später ersetzt.</p>}
       </section>}
       {run.status === 'running' && !run.returning && <section className={styles.card}>
         {run.revealedTarget ? <><p>Aufgedecktes Ziel: <strong>{run.revealedTarget.number} · {run.revealedTarget.name}</strong></p><button onClick={()=>setTab('map')}>Ziel auf Karte anzeigen</button><p className={styles.muted}>Die Minute Strafzeit wurde bereits berechnet. Erneutes Anzeigen ist kostenlos.</p></> : <><button disabled={busy || !connected} onClick={()=>setHelpStep(run.confirmed)}>Keine Ahnung? Ort anzeigen (+1 Minute)</button><p className={styles.muted}>Die Hilfe verrät Name und Kartenposition. Ihr müsst trotzdem dorthin laufen und euren Standort bestätigen.</p></>}

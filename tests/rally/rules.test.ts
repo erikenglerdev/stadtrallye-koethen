@@ -10,12 +10,12 @@ import {join} from 'node:path';
 const points = route.stations;
 const run: Run = {id:'test', routeVersion:'test', startIndex:0, confirmed:0, startedAt:null, finishedAt:null, challenge:'test', challengeAt:1000};
 function fixes(index = 0, t = 1000): Sample[] { return [1, 2501, 5001].map(dt=>({lat:points[index].lat,lng:points[index].lng,accuracy:8,timestamp:t+dt})); }
-test('all 25 active stations occur exactly once and have fictional clues', () => {
- assert.equal(points.length,25); assert.equal(new Set(points.map(p=>p.id)).size,25);
- assert.ok(!points.some(p=>p.id==='place-08'));
+test('all 24 active stations occur exactly once and have clues', () => {
+ assert.equal(points.length,24); assert.equal(new Set(points.map(p=>p.id)).size,24);
+ assert.ok(!points.some(p=>p.id==='place-08' || p.id==='place-11'));
  assert.equal(points[14].name,'Gartenstraße');
  assert.equal(points[13].radiusMeters,30);
- assert.ok(points.every((p,i)=>p.number===i+1 && p.hint.startsWith('Platzhalterhinweis:')));
+ assert.ok(points.every((p,i)=>p.number===i+1 && p.hint.trim().length > 0));
 });
 test('distances are measured in meters',()=>{ assert.equal(distanceMeters(points[0],points[0]),0); assert.ok(Math.abs(distanceMeters({lat:0,lng:0},{lat:0,lng:0.001})-111.195)<0.1); });
 test('every start visits every station and returns to start before finishing',()=>{
