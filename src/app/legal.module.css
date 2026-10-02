@@ -1,0 +1,15 @@
+.page{max-width:800px;margin:0 auto;padding:32px 24px 72px;background:#faf9f4;color:#243c32;min-height:100dvh;line-height:1.7;font-family:var(--font-body),Arial,sans-serif}
+.nav{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14px}
+.page a{color:#275b47;text-decoration:underline;text-underline-offset:3px}
+.page a:focus-visible{outline:3px solid #c3933d;outline-offset:3px}
+.eyebrow{margin:30px 0 8px;font-size:12px;font-weight:700;letter-spacing:1.3px;color:#85703d;text-transform:uppercase}
+.page h1{font-size:clamp(30px,6vw,42px);line-height:1.15;margin:0 0 16px}
+.lead{font-size:17px;color:#516257;max-width:65ch}
+.page section{background:#fff;border:1px solid #e4e7de;border-radius:16px;padding:20px 24px;margin:20px 0}
+.page h2{font-size:22px;line-height:1.3;margin:0 0 12px}
+.page h3{font-size:17px;margin:20px 0 8px}
+.page p{margin:9px 0}.page ul{padding-left:24px}.page li{margin:5px 0}
+.page address{font-style:normal}
+.note{font-size:14px;color:#66756b}
+@media(max-width:480px){.page{padding:24px 16px 56px}.page section{padding:18px}}
+:global(html):has(.page),:global(body):has(.page){position:static;height:auto;min-height:100dvh;overflow-x:clip;overflow-y:visible}

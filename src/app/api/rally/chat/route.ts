@@ -13,7 +13,6 @@ function context(req: NextRequest) {
 function failure(error: unknown) {
   if (error instanceof RallyError) return json({error: error.message}, error.status);
   if (error instanceof z.ZodError || error instanceof SyntaxError) return json({error: 'Die Anfrage ist ungültig.'}, 400);
-  console.error('Rally chat request failed:', error instanceof Error ? error.message : 'Unknown error');
   return json({error: 'Der Chat ist gerade nicht erreichbar. Bitte erneut versuchen.'}, 500);
 }
 export async function GET(req: NextRequest) {

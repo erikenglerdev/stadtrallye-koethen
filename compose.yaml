@@ -3,6 +3,8 @@ services:
     image: ghcr.io/erikenglerdev/stadtrallye-koethen:${RALLY_IMAGE_TAG:-latest}
     pull_policy: always
     restart: unless-stopped
+    logging:
+      driver: "none"
     ports:
       - "127.0.0.1:${RALLY_PORT:-3000}:3000"
     environment:

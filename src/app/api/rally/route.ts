@@ -24,7 +24,6 @@ const json = (body: unknown, status = 200) => NextResponse.json(body, {status, h
 function failure(error: unknown) {
   if (error instanceof RallyError) return json({error: error.message}, error.status);
   if (error instanceof z.ZodError || error instanceof SyntaxError) return json({error: 'Die Anfrage ist ungültig.'}, 400);
-  console.error('Rally request failed:', error instanceof Error ? error.message : 'Unknown error');
   return json({error: 'Der Server ist gerade nicht erreichbar. Bitte erneut versuchen.'}, 500);
 }
 export async function GET(req: NextRequest) {

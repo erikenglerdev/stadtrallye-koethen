@@ -9,14 +9,7 @@ export type Config = {
 };
 
 // Validate config.json file on load
-const validateConfig = () => {
-  try {
-    return configSchema.parse(rawConfig);
-  } catch (error) {
-    console.error("❌ Error validating config.json file:");
-    throw error;
-  }
-};
+const validateConfig = () => configSchema.parse(rawConfig);
 
 // Validate configuration when loading the module
 const config = validateConfig();
