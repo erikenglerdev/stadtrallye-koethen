@@ -8,10 +8,12 @@ import {NextRequest} from 'next/server';
 const dir=mkdtempSync(join(tmpdir(),'rally-api-'));
 process.env.RALLY_DATA_DIR=dir;
 import {GET,POST} from '../../src/app/api/rally/route';
+import {GET as chatGET, POST as chatPOST} from '../../src/app/api/rally/chat/route';
 import {getStore} from '../../src/rally/store';
 after(()=>{getStore().close();rmSync(dir,{recursive:true,force:true});});
 const url='http://localhost:3000/api/rally';
 function req(body:unknown, cookie?:string, origin='http://localhost:3000') { return new NextRequest(url,{method:'POST',headers:{origin,'content-type':'application/json',...(cookie?{cookie}:{})},body:JSON.stringify(body)}); }
+function chatReq(body?:unknown,cookie?:string,origin='http://localhost:3000') {return new NextRequest(url+'/chat',{method:body?'POST':'GET',headers:{origin,'content-type':'application/json',...(cookie?{cookie}:{})},...(body?{body:JSON.stringify(body)}:{})});}
 test('API validates origin, input, session and does not expose future coordinates',async()=>{
  assert.equal((await POST(req({action:'start',code:codes[0],teamName:'Test Team',stationNumber:1},undefined,'https://other.invalid'))).status,403);
  assert.equal((await POST(req({action:'start',code:codes[0],teamName:'Test Team',stationNumber:28}))).status,400);
@@ -29,9 +31,17 @@ test('API validates origin, input, session and does not expose future coordinate
  const joined=await POST(req({action:'join',code:codes[0]}));assert.equal(joined.status,200);
  const peerCookie=joined.headers.get('set-cookie')!.split(';')[0];assert.notEqual(peerCookie,session);
  assert.equal((await joined.json()).run.teamName,'Test Team');
+ assert.equal((await chatGET(chatReq())).status,401);
+ assert.equal((await chatPOST(chatReq({message:'Hilfe'},session,'https://other.invalid'))).status,403);
+ assert.equal((await chatPOST(chatReq({message:' '},session))).status,400);
+ assert.equal((await chatPOST(chatReq({message:'x'.repeat(1001)},session))).status,400);
+ const sent=await chatPOST(chatReq({message:'Wir brauchen Hilfe.'},session));assert.equal(sent.status,200);
+ assert.deepEqual((await sent.json()).messages.map((m:{body:string})=>m.body),['Wir brauchen Hilfe.']);
+ const shared=await chatGET(chatReq(undefined,peerCookie));assert.equal((await shared.json()).messages[0].body,'Wir brauchen Hilfe.');
  assert.equal((await POST(req({action:'join',code:'INVALID'}))).status,400);
  const c=await (await POST(req({action:'challenge'},session))).json();assert.match(c.nonce,/^[a-f0-9]{48}$/);
  const reset=await POST(req({action:'reset'},session));assert.equal(reset.status,200);assert.match(reset.headers.get('set-cookie')!,/Max-Age=0/i);
  const peer=await GET(new NextRequest(url,{headers:{cookie:peerCookie}}));assert.equal((await peer.json()).run.startNumber,5);
  const detached=await GET(new NextRequest(url,{headers:{cookie:session}}));assert.equal((await detached.json()).run,null);
+ assert.equal((await chatGET(chatReq(undefined,session))).status,404);
 });

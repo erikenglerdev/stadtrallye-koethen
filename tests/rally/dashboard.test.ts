@@ -17,6 +17,7 @@ test('dashboard persists identified finish times and penalties without exposing 
  const dir=mkdtempSync(join(tmpdir(),'rally-dashboard-'));const path=join(dir,'runs.sqlite');let store=new RallyStore(path);
  try {
   const token=store.create(1,{code:codes[0].toLowerCase(),teamName:'Team Alpha'});
+  const joined=store.join(codes[0]);
   assert.throws(()=>store.create(2,{code:codes[0],teamName:'Duplicate'}));
   assert.throws(()=>store.create(1,{code:'',teamName:'No code'}));
   assert.equal(store.dashboard().teams[0].status,'ready');
@@ -31,6 +32,17 @@ test('dashboard persists identified finish times and penalties without exposing 
   assert.equal(team.elapsedMs,route.stations.length*10000+60000);assert.equal(team.penaltyMs,60000);
   assert.equal(store.dashboard(99999999).teams[0].elapsedMs,team.elapsedMs);
   assert.deepEqual(Object.keys(team).sort(),['code','elapsedMs','finishedAt','id','penaltyMs','startedAt','status','teamName']);
+  store.sendTeamMessage(token,'Wir brauchen Hilfe.',100000000);
+  assert.equal(store.dashboard().helpRequests[0].lastSender,'team');
+  assert.equal(store.dashboard().helpRequests[0].teamId,team.id);
+  assert.equal(store.dashboardChat(team.id).messages[0].body,'Wir brauchen Hilfe.');
+  store.sendDashboardMessage(team.id,'Wir kommen zu euch.',100000001);
+  assert.equal(store.dashboard().helpRequests[0].lastSender,'organizer');
+  assert.deepEqual(store.teamChat(token).messages.map(m=>m.body),['Wir brauchen Hilfe.','Wir kommen zu euch.']);
+  assert.equal(store.teamChat(joined).messages.length,2);
+  store.close();store=new RallyStore(path);
+  assert.equal(store.teamChat(joined).messages[1].body,'Wir kommen zu euch.');
+  assert.equal(store.dashboard().helpRequests[0].lastSender,'organizer');
   const abandoned=store.create(2,{code:codes[1],teamName:'New team'});store.leave(abandoned);
   assert.equal(store.dashboard().teams[0].status,'abandoned');
   assert.throws(()=>store.challenge(abandoned));
@@ -42,7 +54,8 @@ test('dashboard requires server authentication, isolates simulation and has no e
  const saved={...process.env};Object.assign(process.env,{NODE_ENV:'development',RALLY_DATA_DIR:dir,RALLY_DASHBOARD_PASSWORD:password,RALLY_DASHBOARD_SESSION_SECRET:randomBytes(32).toString('hex')});
  const realStore=getStore(),simStore=getSimulationStore();
  t.after(()=>{realStore.close();simStore.close();rmSync(dir,{recursive:true,force:true});for(const key of ['NODE_ENV','RALLY_DATA_DIR','RALLY_DASHBOARD_PASSWORD','RALLY_DASHBOARD_SESSION_SECRET']){if(saved[key]===undefined)delete process.env[key];else process.env[key]=saved[key];}});
- getStore().create(1,{code:codes[0],teamName:'Real team'});getSimulationStore().create(2,{code:codes[1],teamName:'Simulated team'});
+ const realToken=getStore().create(1,{code:codes[0],teamName:'Real team'});const simToken=getSimulationStore().create(2,{code:codes[1],teamName:'Simulated team'});
+ getStore().sendTeamMessage(realToken,'Echte Anfrage');getSimulationStore().sendTeamMessage(simToken,'Simulierte Anfrage');
  assert.equal((await GET(req())).status,401);
  assert.equal((await POST(req({action:'login',password:'wrong'}))).status,401);
  assert.equal((await POST(req({action:'login',password},'','https://other.invalid'))).status,403);
@@ -50,7 +63,21 @@ test('dashboard requires server authentication, isolates simulation and has no e
  const cookie=login.headers.get('set-cookie')!;assert.match(cookie,/HttpOnly/i);assert.match(cookie,/SameSite=strict/i);
  const session=cookie.split(';')[0];
  const real=await (await GET(req(undefined,session))).json();assert.deepEqual(real.teams.map((r:{code:string})=>r.code),[codes[0]]);
+ assert.equal(real.helpRequests[0].lastMessage,'Echte Anfrage');
  const sim=await (await GET(req(undefined,session,undefined,true))).json();assert.deepEqual(sim.teams.map((r:{code:string})=>r.code),[codes[1]]);
+ assert.equal(sim.helpRequests[0].lastMessage,'Simulierte Anfrage');
+ assert.equal((await POST(req({action:'reply',teamId:real.teams[0].id,message:'Antwort'}))).status,401);
+ assert.equal((await POST(req({action:'reply',teamId:real.teams[0].id,message:'Antwort'},session,'https://other.invalid'))).status,403);
+ assert.equal((await POST(req({action:'reply',teamId:real.teams[0].id,message:' '},session))).status,400);
+ const reply=await POST(req({action:'reply',teamId:real.teams[0].id,message:'Antwort'},session));assert.equal(reply.status,200);
+ assert.deepEqual((await reply.json()).messages.map((m:{body:string})=>m.body),['Echte Anfrage','Antwort']);
+ assert.equal(getStore().teamChat(realToken).messages[1].body,'Antwort');
+ const chat=await GET(new NextRequest('http://localhost:3000/api/dashboard?chat='+real.teams[0].id,{headers:{cookie:session}}));
+ assert.equal((await chat.json()).messages.length,2);
+ const simChat=await GET(new NextRequest('http://localhost:3000/api/dashboard?simulation=1&chat='+sim.teams[0].id,{headers:{cookie:session}}));
+ assert.equal((await simChat.json()).messages[0].body,'Simulierte Anfrage');
+ assert.equal((await GET(new NextRequest('http://localhost:3000/api/dashboard?chat=invalid',{headers:{cookie:session}}))).status,400);
+ assert.equal(getSimulationStore().teamChat(simToken).messages.length,1);
  assert.equal((await POST(req({action:'delete'},session))).status,400);
  assert.equal(authenticated(dashboardSession(1700000000000),1700000000001),true);
  assert.equal(authenticated(dashboardSession(1700000000000),1700000000000+13*60*60*1000),false);

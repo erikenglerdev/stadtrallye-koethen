@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
       res.cookies.set(cookie, newToken, {httpOnly: true, sameSite: 'strict', secure: process.env.NODE_ENV === 'production', maxAge: 60 * 60 * 24 * 30, path: process.env.BASE_PATH || '/'});
       return res;
     }
-    if (!token) return json({error: 'Bitte zuerst eine Startnummer eingeben.'}, 401);
+    if (!token) return json({error: 'Bitte zuerst eine Starposition eingeben.'}, 401);
     if (body.action === 'challenge') return json({...store.challenge(token), ...(simulation ? {position: store.simulationTarget(token)} : {})});
     if (body.action === 'reveal') return json({...store.reveal(token, body.step), ...(simulation ? {simulationTrack: route.track} : {})});
     return json({...store.confirm(token, body.nonce, body.samples), ...(simulation ? {simulationTrack: route.track} : {})});

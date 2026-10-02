@@ -11,7 +11,7 @@
     "test:e2e": "playwright",
     "validate:config": "node --import tsx scripts/validate-config.ts",
     "test:rally": "node --import tsx --test tests/rally/*.test.ts",
-    "lint:rally": "eslint --no-ignore src/rally/*.ts src/components/Rally/*.tsx src/app/api/rally/route.ts src/app/rallye/page.tsx tests/rally/*.test.ts src/components/Dashboard/*.tsx src/app/dashboard/page.tsx src/app/api/dashboard/route.ts",
+    "lint:rally": "eslint --no-ignore src/rally/*.ts src/components/Rally/*.tsx src/app/api/rally/route.ts src/app/api/rally/chat/route.ts src/app/rallye/page.tsx tests/rally/*.test.ts src/components/Dashboard/*.tsx src/app/dashboard/page.tsx src/app/api/dashboard/route.ts",
     "legal:notices": "node scripts/generate-notices.mjs",
     "predev": "npm run legal:notices"
   },

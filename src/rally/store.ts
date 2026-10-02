@@ -6,7 +6,7 @@ import {acceptedTeamCode} from './team-codes';
 import {identitySchema} from './identity';
 import {route, routeVersion} from './route';
 import {advance, expectedIndex, verifySamples} from './rules';
-import type {RallyView, Run, Sample} from './types';
+import type {ChatMessage, HelpRequest, RallyView, Run, Sample} from './types';
 export class RallyError extends Error { constructor(message: string, public status = 400) { super(message); } }
 const tokenHash = (s: string) => createHash('sha256').update(s).digest('hex');
 export class RallyStore {
@@ -21,7 +21,9 @@ export class RallyStore {
       INSERT OR IGNORE INTO sessions SELECT id, id, NULL, NULL, NULL, NULL FROM runs;
       CREATE TABLE IF NOT EXISTS teams (runId TEXT PRIMARY KEY, code TEXT NOT NULL, teamName TEXT NOT NULL, abandonedAt INTEGER);
       CREATE TABLE IF NOT EXISTS reveals (runId TEXT NOT NULL, step INTEGER NOT NULL, revealedAt INTEGER NOT NULL, PRIMARY KEY(runId, step));
-      CREATE TABLE IF NOT EXISTS confirmations (runId TEXT NOT NULL, step INTEGER NOT NULL, stationId TEXT NOT NULL, confirmedAt INTEGER NOT NULL, PRIMARY KEY(runId, step));`);
+      CREATE TABLE IF NOT EXISTS confirmations (runId TEXT NOT NULL, step INTEGER NOT NULL, stationId TEXT NOT NULL, confirmedAt INTEGER NOT NULL, PRIMARY KEY(runId, step));
+      CREATE TABLE IF NOT EXISTS chat_messages (id INTEGER PRIMARY KEY AUTOINCREMENT, runId TEXT NOT NULL, sender TEXT NOT NULL CHECK(sender IN ('team', 'organizer')), body TEXT NOT NULL, createdAt INTEGER NOT NULL);
+      CREATE INDEX IF NOT EXISTS chat_messages_run ON chat_messages(runId, id);`);
   }
   close() { this.db.close(); }
   get(token: string | undefined): Run | null {
@@ -97,6 +99,37 @@ export class RallyStore {
       this.db.exec('COMMIT');
     } catch(error) {if(this.db.isTransaction)this.db.exec('ROLLBACK');throw error;}
   }
+  private chatMessages(runId: string): ChatMessage[] {
+    const rows = this.db.prepare('SELECT id, sender, body, createdAt FROM chat_messages WHERE runId=? ORDER BY id DESC LIMIT 100').all(runId) as ChatMessage[];
+    return rows.reverse();
+  }
+  teamChat(token: string) { return {messages: this.chatMessages(this.require(token).id)}; }
+  sendTeamMessage(token: string, message: string, now = Date.now()) {
+    const run = this.require(token);
+    const body = message.trim();
+    if (!body || body.length > 1000) throw new RallyError('Bitte eine Nachricht mit höchstens 1000 Zeichen eingeben.');
+    this.db.exec('BEGIN IMMEDIATE');
+    try {
+      const last = this.db.prepare("SELECT createdAt FROM chat_messages WHERE runId=? AND sender='team' ORDER BY id DESC LIMIT 1").get(run.id) as {createdAt: number} | undefined;
+      if (last && now - last.createdAt < 2000) throw new RallyError('Bitte kurz warten, bevor ihr eine weitere Nachricht sendet.', 429);
+      this.db.prepare("INSERT INTO chat_messages (runId, sender, body, createdAt) VALUES (?, 'team', ?, ?)").run(run.id, body, now);
+      this.db.exec('COMMIT');
+    } catch (error) { if (this.db.isTransaction) this.db.exec('ROLLBACK'); throw error; }
+    return this.teamChat(token);
+  }
+  dashboardChat(teamId: number) {
+    const row = this.db.prepare('SELECT id FROM runs WHERE rowid=?').get(teamId) as {id: string} | undefined;
+    if (!row) throw new RallyError('Dieses Team wurde nicht gefunden.', 404);
+    return {messages: this.chatMessages(row.id)};
+  }
+  sendDashboardMessage(teamId: number, message: string, now = Date.now()) {
+    const body = message.trim();
+    if (!body || body.length > 1000) throw new RallyError('Bitte eine Nachricht mit höchstens 1000 Zeichen eingeben.');
+    const row = this.db.prepare('SELECT id FROM runs WHERE rowid=?').get(teamId) as {id: string} | undefined;
+    if (!row) throw new RallyError('Dieses Team wurde nicht gefunden.', 404);
+    this.db.prepare("INSERT INTO chat_messages (runId, sender, body, createdAt) VALUES (?, 'organizer', ?, ?)").run(row.id, body, now);
+    return this.dashboardChat(teamId);
+  }
   dashboard(now = Date.now()) {
     // Only timing and team identity leave the server; no station IDs or locations.
     const rows = this.db.prepare(`SELECT r.rowid AS id, t.code, t.teamName, t.abandonedAt,
@@ -106,7 +139,13 @@ export class RallyStore {
         id: number; code: string | null; teamName: string | null; abandonedAt: number | null;
         routeVersion: string; startedAt: number | null; finishedAt: number | null; penaltyMs: number;
       }[];
-    return {serverNow: now, teams: rows.map(r=>({id:r.id, code:r.code ?? '–', teamName:r.teamName ?? 'Ohne Teamname (Altbestand)',
+    const helpRequests = this.db.prepare(`SELECT r.rowid AS teamId, COALESCE(t.code, '–') AS code,
+      COALESCE(t.teamName, 'Ohne Teamname (Altbestand)') AS teamName,
+      m.body AS lastMessage, m.createdAt AS lastMessageAt, m.sender AS lastSender,
+      (SELECT COUNT(*) FROM chat_messages WHERE runId=r.id) AS messageCount
+      FROM runs r JOIN chat_messages m ON m.id=(SELECT MAX(id) FROM chat_messages WHERE runId=r.id)
+      LEFT JOIN teams t ON t.runId=r.id ORDER BY (m.sender='team') DESC, m.id DESC`).all() as HelpRequest[];
+    return {serverNow: now, helpRequests, teams: rows.map(r=>({id:r.id, code:r.code ?? '–', teamName:r.teamName ?? 'Ohne Teamname (Altbestand)',
       status: r.finishedAt !== null ? 'finished' as const : r.abandonedAt !== null ? 'abandoned' as const : r.routeVersion !== routeVersion ? 'outdated' as const : r.startedAt !== null ? 'running' as const : 'ready' as const,
       startedAt:r.startedAt, finishedAt:r.finishedAt, penaltyMs:r.penaltyMs,
       elapsedMs:r.startedAt === null ? 0 : Math.max(0,(r.finishedAt ?? r.abandonedAt ?? now)-r.startedAt)+r.penaltyMs}))};
