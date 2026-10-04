@@ -6,9 +6,8 @@ Die Texte aus Spalte C führen jeweils zum in Spalte B genannten Ziel. Zuordnung
 
 ## Noch zu klären
 
-- Orangenes Ohr wurde am 18.09.2026 entfernt. Die Route enthält aktuell 24 Stationen; Ritterstraße ist Nummer 24. Injoy aus der Tabelle ist noch nicht aufgenommen, da der genaue GPS-Punkt fehlt.
+- Orangenes Ohr wurde am 18.09.2026 entfernt. Die Route enthält aktuell 23 Stationen; Ritterstraße wurde ebenfalls entfernt. Injoy aus der Tabelle ist noch nicht aufgenommen, da der genaue GPS-Punkt fehlt.
 - Springbrunnen: Am 23.09.2026 ohne Baumzahl freigegeben: „Findet den Wasserlauf umgeben von Bäumen.“
-- Ritterstraße: genauer Treffpunkt fehlt laut Tabelle. Bisheriger Platzhalter bleibt bis zur Klärung.
 - Schloss-Kühe: Mittelpunkt am 23.09.2026 durch die Organisation festgelegt: 51.753888889, 11.975194444; Radius 60 m.
 
 ## Redaktionelle Anmerkungen aus Spalte D

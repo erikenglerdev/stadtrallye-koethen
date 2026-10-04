@@ -40,7 +40,7 @@ test('simulation completes all active stations and return while preserving the r
    const denied=await POST(req({action:'reveal',step:0},cookies));assert.equal(denied.status,409);
    for(let retry=0;retry<2;retry++) {
     const response=await POST(req({action:'reveal',step},cookies));assert.equal(response.status,200);
-    const shown=await response.json();assert.equal(shown.run.penaltyMs,60000);assert.equal(shown.run.revealedTarget.number,1);
+    const shown=await response.json();assert.equal(shown.run.penaltyMs,360000);assert.equal(shown.run.revealedTarget.number,1);
    }
   }
   const c=await (await POST(req({action:'challenge'},cookies))).json();
@@ -50,7 +50,7 @@ test('simulation completes all active stations and return while preserving the r
   assert.equal(response.status,200);const value=await response.json();assert.equal(value.run.confirmed,step+1);
   assert.equal(value.run.status,step===route.stations.length?'finished':'running');now+=1000;
  }
- const finished=await (await GET(req(undefined,cookies))).json();assert.equal(finished.run.status,'finished');assert.equal(finished.run.elapsedMs,route.stations.length*7000+60000);
+ const finished=await (await GET(req(undefined,cookies))).json();assert.equal(finished.run.status,'finished');assert.equal(finished.run.elapsedMs,route.stations.length*7000+360000);
  const original=await (await GET(req(undefined,cookies,false))).json();assert.equal(original.simulationTrack,undefined);assert.equal(finished.simulationTrack.length,244);assert.equal(original.run.confirmed,0);assert.equal(original.run.startedAt,null);
  const reset=await POST(req({action:'reset'},cookies));assert.match(reset.headers.get('set-cookie')!,/^rally_simulation_session=/);
  Object.assign(process.env,{NODE_ENV:'production'});

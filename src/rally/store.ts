@@ -9,6 +9,7 @@ import {advance, expectedIndex, verifySamples} from './rules';
 import type {ChatMessage, HelpRequest, RallyView, Run, Sample} from './types';
 export class RallyError extends Error { constructor(message: string, public status = 400) { super(message); } }
 const tokenHash = (s: string) => createHash('sha256').update(s).digest('hex');
+const REVEAL_PENALTY_MS = 6 * 60 * 1000;
 export class RallyStore {
   private db: DatabaseSync;
   constructor(path: string) {
@@ -20,10 +21,13 @@ export class RallyStore {
       CREATE INDEX IF NOT EXISTS sessions_run ON sessions(runId);
       INSERT OR IGNORE INTO sessions SELECT id, id, NULL, NULL, NULL, NULL FROM runs;
       CREATE TABLE IF NOT EXISTS teams (runId TEXT PRIMARY KEY, code TEXT NOT NULL, teamName TEXT NOT NULL, abandonedAt INTEGER);
-      CREATE TABLE IF NOT EXISTS reveals (runId TEXT NOT NULL, step INTEGER NOT NULL, revealedAt INTEGER NOT NULL, PRIMARY KEY(runId, step));
+      CREATE TABLE IF NOT EXISTS reveals (runId TEXT NOT NULL, step INTEGER NOT NULL, revealedAt INTEGER NOT NULL, penaltyMs INTEGER NOT NULL, PRIMARY KEY(runId, step));
       CREATE TABLE IF NOT EXISTS confirmations (runId TEXT NOT NULL, step INTEGER NOT NULL, stationId TEXT NOT NULL, confirmedAt INTEGER NOT NULL, PRIMARY KEY(runId, step));
       CREATE TABLE IF NOT EXISTS chat_messages (id INTEGER PRIMARY KEY AUTOINCREMENT, runId TEXT NOT NULL, sender TEXT NOT NULL CHECK(sender IN ('team', 'organizer')), body TEXT NOT NULL, createdAt INTEGER NOT NULL);
       CREATE INDEX IF NOT EXISTS chat_messages_run ON chat_messages(runId, id);`);
+    const revealColumns = this.db.prepare('PRAGMA table_info(reveals)').all() as {name: string}[];
+    if (!revealColumns.some(column => column.name === 'penaltyMs'))
+      this.db.exec('ALTER TABLE reveals ADD COLUMN penaltyMs INTEGER NOT NULL DEFAULT 60000');
   }
   close() { this.db.close(); }
   get(token: string | undefined): Run | null {
@@ -77,8 +81,8 @@ export class RallyStore {
     this.require(token!);
     const team = this.db.prepare('SELECT code, teamName FROM teams WHERE runId=?').get(run.id) as {code: string; teamName: string} | undefined;
     const start = route.stations[run.startIndex];
-    const reveals = this.db.prepare('SELECT step FROM reveals WHERE runId = ?').all(run.id) as {step: number}[];
-    const penaltyMs = reveals.length * 60000;
+    const reveals = this.db.prepare('SELECT step, penaltyMs FROM reveals WHERE runId = ?').all(run.id) as {step: number; penaltyMs: number}[];
+    const penaltyMs = reveals.reduce((total, reveal) => total + reveal.penaltyMs, 0);
     const target = route.stations[expectedIndex(run, route.stations.length)];
     const revealedTarget = run.finishedAt === null && reveals.some(r => r.step === run.confirmed)
       ? {number: target.number, name: target.name, lat: target.lat, lng: target.lng} : null;
@@ -134,7 +138,7 @@ export class RallyStore {
     // Only timing and team identity leave the server; no station IDs or locations.
     const rows = this.db.prepare(`SELECT r.rowid AS id, t.code, t.teamName, t.abandonedAt,
       r.routeVersion, r.startedAt, r.finishedAt,
-      (SELECT COUNT(*) FROM reveals v WHERE v.runId=r.id)*60000 AS penaltyMs
+      COALESCE((SELECT SUM(v.penaltyMs) FROM reveals v WHERE v.runId=r.id), 0) AS penaltyMs
       FROM runs r LEFT JOIN teams t ON t.runId=r.id ORDER BY r.rowid DESC`).all() as unknown as {
         id: number; code: string | null; teamName: string | null; abandonedAt: number | null;
         routeVersion: string; startedAt: number | null; finishedAt: number | null; penaltyMs: number;
@@ -157,7 +161,7 @@ export class RallyStore {
       if (run.finishedAt !== null || run.startedAt === null || run.confirmed === route.stations.length)
         throw new RallyError('Für diese Station ist keine kostenpflichtige Hilfe nötig.');
       if (run.confirmed !== step) throw new RallyError('Die Station hat sich geändert. Bitte den Stand aktualisieren.', 409);
-      this.db.prepare('INSERT OR IGNORE INTO reveals VALUES (?, ?, ?)').run(run.id, step, now);
+      this.db.prepare('INSERT OR IGNORE INTO reveals (runId, step, revealedAt, penaltyMs) VALUES (?, ?, ?, ?)').run(run.id, step, now, REVEAL_PENALTY_MS);
       this.db.exec('COMMIT');
       return this.view(token, now);
     } catch (error) {

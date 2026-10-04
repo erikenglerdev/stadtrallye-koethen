@@ -2,11 +2,11 @@
 
 Übernommen aus den bereitgestellten [Routennotizen](../data/routes/koethen-route-gegen-uhrzeigersinn.md) und der [GPX-Datei](../data/routes/koethen-route-gegen-uhrzeigersinn.gpx). Beide Originaldateien bleiben unverändert erhalten. Die GPX-Weglinie mit 244 Punkten wird im lokalen Testmodus angezeigt. Laut Routennotiz etwa 4,2 km.
 
-24 verschiedene Stationen bilden den Kreis. Eintrag 27 der Vorlage ist die Rückkehr zum Rathaus, keine zusätzliche Station. Nach Station 24 folgt Station 1. Die frei gewählte Startnummer rotiert dieselbe Reihenfolge; die Zeit endet erst nach der Rückkehr zum eigenen Start. Beete und die bisherige Station 15 (Stiftstraße) entfallen. Ab Gartenstraße sind die folgenden Stationen neu nummeriert; der gelieferte Wegverlauf bleibt erhalten. Der westliche Punkt der Ritterstraße bleibt in der Weglinie, ist aber keine zusätzliche GPS-Station.
+23 verschiedene Stationen bilden den Kreis. Eintrag 27 der Vorlage ist die Rückkehr zum Rathaus, keine zusätzliche Station. Nach Station 23 folgt Station 1. Die frei gewählte Startposition rotiert dieselbe Reihenfolge; die Zeit endet erst nach der Rückkehr zum eigenen Start. Beete, die bisherige Station 15 (Stiftstraße) und Ritterstraße entfallen als GPS-Stationen. Ab Gartenstraße sind die folgenden Stationen neu nummeriert; der gelieferte Wegverlauf bleibt erhalten. Der westliche Punkt der Ritterstraße bleibt in der Weglinie, ist aber keine GPS-Station.
 
 Die bisherige Station Holzmarkt heißt auf Wunsch der Organisation jetzt Wetterdenkmal (Station 23). Ihre GPX-Koordinaten bleiben unverändert.
 
-Die zugeordneten Hinweise und Bilder der Ersti-Tage sind eingebaut; offene Angaben sind in [rally-clues.md](rally-clues.md) dokumentiert. Die Koordinaten stammen aus der GPX-Datei; der Mittelpunkt der Kühe-Station wurde am 23.09.2026 auf Vorgabe der Organisation auf 51°45'14.0"N 11°58'30.7"E geändert. Die GPS-Erreichbarkeit ist nicht vor Ort überprüft. Orangenes Ohr / HörPartner wurde am 18.09.2026 entfernt. Wetterdenkmal behält vorerst 10 m Radius, die Kühe-Station verwendet 60 m Radius um den angegebenen Mittelpunkt, die übrigen Stationen 30 m. Die engen Radien und die GPS-Erreichbarkeit müssen vor Ort erprobt werden. Die App kontrolliert die Stationen, nicht den tatsächlich gelaufenen Weg zwischen ihnen.
+Die zugeordneten Hinweise und Bilder der Ersti-Tage sind eingebaut; offene Angaben sind in [rally-clues.md](rally-clues.md) dokumentiert. Die Koordinaten stammen aus der GPX-Datei; der Mittelpunkt der Kühe-Station wurde am 23.09.2026 auf Vorgabe der Organisation auf 51°45'14.0"N 11°58'30.7"E geändert. Die GPS-Erreichbarkeit ist nicht vor Ort überprüft. Orangenes Ohr / HörPartner wurde am 18.09.2026 entfernt. Wetterdenkmal behält vorerst 10 m Radius, die Kühe-Station verwendet 60 m Radius um den angegebenen Mittelpunkt, Magdeburger Turm 50 m und die übrigen Stationen 30 m. Die engen Radien und die GPS-Erreichbarkeit müssen vor Ort erprobt werden. Die App kontrolliert die Stationen, nicht den tatsächlich gelaufenen Weg zwischen ihnen.
 
 | Nr. | Station | Breitengrad | Längengrad | Radius |
 |---|---|---|---|---|
@@ -26,15 +26,14 @@ Die zugeordneten Hinweise und Bilder der Ersti-Tage sind eingebaut; offene Angab
 | 14 | St. Maria Himmelfahrt | 51.753828 | 11.974062 | 30 m |
 | 15 | Gartenstraße | 51.754443 | 11.973327 | 30 m |
 | 16 | Großer Plan / Kleiner Plan | 51.753735 | 11.972276 | 30 m |
-| 17 | Magdeburger Turm | 51.753862 | 11.971418 | 30 m |
+| 17 | Magdeburger Turm | 51.753862 | 11.971418 | 50 m |
 | 18 | Hahnemann-Haus | 51.753282 | 11.97049 | 30 m |
 | 19 | Bachdenkmal | 51.751348 | 11.97098 | 30 m |
 | 20 | Nah & Gut | 51.749928 | 11.972359 | 30 m |
 | 21 | Halli | 51.750673 | 11.973357 | 30 m |
 | 22 | St. Jakob | 51.751321 | 11.973373 | 30 m |
 | 23 | Wetterdenkmal | 51.7515 | 11.976272 | 10 m |
-| 24 | Ritterstraße | 51.752314 | 11.976514 | 30 m |
 
-25. Rathaus – Ziel (bei Startnummer 1).
+24. Rathaus – Ziel (bei Startposition 1).
 
 Änderungen der Route machen laufende alte Runden inkompatibel. In der App ausdrücklich eine neue Runde beginnen; bestehende Daten werden nicht automatisch gelöscht.

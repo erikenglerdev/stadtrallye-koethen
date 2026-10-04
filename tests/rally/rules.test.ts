@@ -10,11 +10,13 @@ import {join} from 'node:path';
 const points = route.stations;
 const run: Run = {id:'test', routeVersion:'test', startIndex:0, confirmed:0, startedAt:null, finishedAt:null, challenge:'test', challengeAt:1000};
 function fixes(index = 0, t = 1000): Sample[] { return [1, 2501, 5001].map(dt=>({lat:points[index].lat,lng:points[index].lng,accuracy:8,timestamp:t+dt})); }
-test('all 24 active stations occur exactly once and have clues', () => {
- assert.equal(points.length,24); assert.equal(new Set(points.map(p=>p.id)).size,24);
- assert.ok(!points.some(p=>p.id==='place-08' || p.id==='place-11'));
+test('all 23 active stations occur exactly once and have clues', () => {
+ assert.equal(points.length,23); assert.equal(new Set(points.map(p=>p.id)).size,23);
+ assert.ok(!points.some(p=>p.id==='place-08' || p.id==='place-11' || p.id==='place-06'));
  assert.equal(points[14].name,'Gartenstraße');
  assert.equal(points[13].radiusMeters,30);
+ assert.equal(points[16].name,'Magdeburger Turm');
+ assert.equal(points[16].radiusMeters,50);
  assert.ok(points.every((p,i)=>p.number===i+1 && p.hint.trim().length > 0));
 });
 test('distances are measured in meters',()=>{ assert.equal(distanceMeters(points[0],points[0]),0); assert.ok(Math.abs(distanceMeters({lat:0,lng:0},{lat:0,lng:0.001})-111.195)<0.1); });
@@ -84,8 +86,8 @@ test('paid reveals persist, charge once per step, reject stale requests and pres
     const shown=store.reveal(token,step,now);
     assert.equal(shown.run!.confirmed,step);
     assert.equal(shown.run!.revealedTarget!.name,points[step].name);
-    assert.equal(shown.run!.elapsedMs,before.run!.elapsedMs+60000);
-    assert.equal(store.reveal(token,step,now).run!.penaltyMs,step*60000);
+    assert.equal(shown.run!.elapsedMs,before.run!.elapsedMs+360000);
+    assert.equal(store.reveal(token,step,now).run!.penaltyMs,step*360000);
     assert.throws(()=>store.reveal(token,step-1,now));
     store.close();store=new RallyStore(path);
     assert.equal(store.view(token,now).run!.revealedTarget!.name,points[step].name);
@@ -98,8 +100,8 @@ test('paid reveals persist, charge once per step, reject stale requests and pres
    store.confirm(token,c.nonce,fixes(step%points.length,now),now+6000);
   }
   const end=store.view(token,9999999).run!;
-  assert.equal(end.penaltyMs,120000);
-  assert.equal(end.elapsedMs,points.length*10000+120000);
+  assert.equal(end.penaltyMs,720000);
+  assert.equal(end.elapsedMs,points.length*10000+720000);
   assert.equal(end.revealedTarget,null);
   assert.equal(end.status,'finished');
   assert.throws(()=>store.reveal(token,points.length+1));

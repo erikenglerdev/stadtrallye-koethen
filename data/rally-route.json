@@ -238,7 +238,7 @@
       "name": "Magdeburger Turm",
       "lat": 51.753862,
       "lng": 11.971418,
-      "radiusMeters": 30,
+      "radiusMeters": 50,
       "hint": "Findet das bronzene Abbild der Freundin vom Turm Halli: Magda.",
       "sourceListIndex": 5,
       "locationVerifiedOnSite": false,
@@ -313,17 +313,6 @@
       "radiusMeters": 10,
       "hint": "Thermometer, Barometer und Hydrometer, alles an einem Ort",
       "sourceListIndex": 2,
-      "locationVerifiedOnSite": false
-    },
-    {
-      "id": "place-06",
-      "number": 24,
-      "name": "Ritterstraße",
-      "lat": 51.752314,
-      "lng": 11.976514,
-      "radiusMeters": 30,
-      "hint": "Platzhalterhinweis (Ritterstraße): Eine unsichtbare Uhr zählt hier die Schritte der Reisenden. Folgt ihrer erfundenen Spur.",
-      "sourceListIndex": 6,
       "locationVerifiedOnSite": false
     }
   ],

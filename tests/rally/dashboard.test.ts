@@ -29,7 +29,7 @@ test('dashboard persists identified finish times and penalties without exposing 
   store.close();store=new RallyStore(path);
   const team=store.dashboard(999999).teams[0];
   assert.equal(team.status,'finished');assert.equal(team.code,codes[0]);assert.equal(team.teamName,'Team Alpha');
-  assert.equal(team.elapsedMs,route.stations.length*10000+60000);assert.equal(team.penaltyMs,60000);
+  assert.equal(team.elapsedMs,route.stations.length*10000+360000);assert.equal(team.penaltyMs,360000);
   assert.equal(store.dashboard(99999999).teams[0].elapsedMs,team.elapsedMs);
   assert.deepEqual(Object.keys(team).sort(),['code','elapsedMs','finishedAt','id','penaltyMs','startedAt','status','teamName']);
   store.sendTeamMessage(token,'Wir brauchen Hilfe.',100000000);

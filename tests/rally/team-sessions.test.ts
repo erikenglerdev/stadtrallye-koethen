@@ -18,7 +18,7 @@ test('multiple devices share one round, independent checks, penalties and perman
   store.confirm(a,ca.nonce,fixes(0,1000),7000);
   assert.throws(()=>store.confirm(b,cb.nonce,fixes(0,1000),7000),/Teamfortschritt/);
   assert.equal(store.view(b,7000).run!.confirmed,1);
-  store.reveal(a,1,8000);assert.equal(store.reveal(b,1,8000).run!.penaltyMs,60000);
+  store.reveal(a,1,8000);assert.equal(store.reveal(b,1,8000).run!.penaltyMs,360000);
   store.leave(a);assert.equal(store.get(a),null);assert.equal(store.view(b).run!.status,'running');
   assert.throws(()=>store.create(2,{code:codes[0],teamName:'Reuse'}),/bereits gestartet/);
   const c=store.join(codes[0]);const bad=store.challenge(b,10000),good=store.challenge(c,10000);
@@ -64,5 +64,26 @@ test('existing single-device sessions migrate and started legacy codes remain co
   store=new RallyStore(path);assert.equal(store.get(token),null);
   assert.throws(()=>store.create(5,{code:codes[3],teamName:'After route change'}),/bereits gestartet/);
   assert.throws(()=>store.join(codes[3]),/älteren Route/);
+ }finally{store.close();rmSync(dir,{recursive:true,force:true});}
+});
+test('existing one-minute reveals keep their penalty while new reveals cost six minutes',()=>{
+ const dir=mkdtempSync(join(tmpdir(),'reveal-migration-')),path=join(dir,'rally.sqlite');
+ const token='b'.repeat(64),id=createHash('sha256').update(token).digest('hex');
+ const db=new DatabaseSync(path);
+ db.exec('CREATE TABLE runs (id TEXT PRIMARY KEY, routeVersion TEXT NOT NULL, startIndex INTEGER NOT NULL, confirmed INTEGER NOT NULL, startedAt INTEGER, finishedAt INTEGER, challenge TEXT, challengeAt INTEGER); CREATE TABLE reveals (runId TEXT NOT NULL, step INTEGER NOT NULL, revealedAt INTEGER NOT NULL, PRIMARY KEY(runId, step))');
+ db.prepare('INSERT INTO runs VALUES (?, ?, 0, 1, 1000, NULL, NULL, NULL)').run(id,routeVersion);
+ db.prepare('INSERT INTO reveals VALUES (?, 1, 2000)').run(id);
+ db.close();
+ let store=new RallyStore(path);
+ try {
+  assert.equal(store.view(token,10000).run!.penaltyMs,60000);
+  assert.equal(store.dashboard(10000).teams[0].penaltyMs,60000);
+  assert.equal(store.reveal(token,1,10000).run!.penaltyMs,60000);
+  const challenge=store.challenge(token,11000);
+  store.confirm(token,challenge.nonce,fixes(1,11000),17000);
+  assert.equal(store.reveal(token,2,18000).run!.penaltyMs,420000);
+  assert.equal(store.dashboard(18000).teams[0].penaltyMs,420000);
+  store.close();store=new RallyStore(path);
+  assert.equal(store.view(token,19000).run!.penaltyMs,420000);
  }finally{store.close();rmSync(dir,{recursive:true,force:true});}
 });
