@@ -13,6 +13,8 @@ function fixes(index = 0, t = 1000): Sample[] { return [1, 2501, 5001].map(dt=>(
 test('all 23 active stations occur exactly once and have clues', () => {
  assert.equal(points.length,23); assert.equal(new Set(points.map(p=>p.id)).size,23);
  assert.ok(!points.some(p=>p.id==='place-08' || p.id==='place-11' || p.id==='place-06'));
+ assert.equal(points[4].name,'Friedenspark');
+ assert.equal(points[4].radiusMeters,1000);
  assert.equal(points[14].name,'Gartenstraße');
  assert.equal(points[13].radiusMeters,30);
  assert.equal(points[16].name,'Magdeburger Turm');
@@ -41,6 +43,10 @@ test('standing in overlapping station circles does not advance',()=>{
  const nearby=[{...points[0],lat:51,lng:12},{...points[1],lat:51.0001,lng:12}];
  const samples=fixes().map(s=>({...s,lat:51.0001,lng:12}));
  assert.match(verifySamples({...run,confirmed:1},samples,nearby,6500)!,/vorherigen/);
+});
+test('a wide previous radius still allows the next nearby station',()=>{
+ assert.ok(distanceMeters(points[4],points[5]) < points[4].radiusMeters);
+ assert.equal(verifySamples({...run,confirmed:5},fixes(5),points,6500),null);
 });
 test('server rejects replay, invalid start and future station, preserving progress',()=>{
  const store=new RallyStore(':memory:');

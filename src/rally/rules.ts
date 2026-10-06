@@ -27,7 +27,12 @@ export function verifySamples(run: Run, samples: Sample[], stations: Station[], 
   if (samples.some(s => distanceMeters(s, target) > target.radiusMeters)) return 'Ihr seid noch nicht an der gesuchten Station. Sucht weiter!';
   if (run.confirmed > 0) {
     const previous = stations[(run.startIndex + run.confirmed - 1) % stations.length];
-    if (samples.some(s => distanceMeters(s, previous) <= previous.radiusMeters + 5))
+    const centerDistance = distanceMeters(previous, target);
+    // A wide previous circle can fully contain the next station's circle.
+    const previousExclusionRadius = previous.radiusMeters >= centerDistance + target.radiusMeters
+      ? Math.max(0, centerDistance - target.radiusMeters - 5)
+      : previous.radiusMeters + 5;
+    if (samples.some(s => distanceMeters(s, previous) <= previousExclusionRadius))
       return 'Ihr seid noch zu nah an der vorherigen Station. Geht weiter zur nächsten Station.';
   }
   return null;

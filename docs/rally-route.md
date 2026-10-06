@@ -6,7 +6,7 @@
 
 Die bisherige Station Holzmarkt heißt auf Wunsch der Organisation jetzt Wetterdenkmal (Station 23). Ihre GPX-Koordinaten bleiben unverändert.
 
-Die zugeordneten Hinweise und Bilder der Ersti-Tage sind eingebaut; offene Angaben sind in [rally-clues.md](rally-clues.md) dokumentiert. Die Koordinaten stammen aus der GPX-Datei; der Mittelpunkt der Kühe-Station wurde am 23.09.2026 auf Vorgabe der Organisation auf 51°45'14.0"N 11°58'30.7"E geändert. Die GPS-Erreichbarkeit ist nicht vor Ort überprüft. Orangenes Ohr / HörPartner wurde am 18.09.2026 entfernt. Wetterdenkmal behält vorerst 10 m Radius, die Kühe-Station verwendet 60 m Radius um den angegebenen Mittelpunkt, Magdeburger Turm 50 m und die übrigen Stationen 30 m. Die engen Radien und die GPS-Erreichbarkeit müssen vor Ort erprobt werden. Die App kontrolliert die Stationen, nicht den tatsächlich gelaufenen Weg zwischen ihnen.
+Die zugeordneten Hinweise und Bilder der Ersti-Tage sind eingebaut; offene Angaben sind in [rally-clues.md](rally-clues.md) dokumentiert. Die Koordinaten stammen aus der GPX-Datei; der Mittelpunkt der Kühe-Station wurde am 23.09.2026 auf Vorgabe der Organisation auf 51°45'14.0"N 11°58'30.7"E geändert. Die GPS-Erreichbarkeit ist nicht vor Ort überprüft. Orangenes Ohr / HörPartner wurde am 18.09.2026 entfernt. Wetterdenkmal behält vorerst 10 m Radius, die Kühe-Station verwendet 60 m Radius um den angegebenen Mittelpunkt, Magdeburger Turm 50 m, Friedenspark 1 km und die übrigen Stationen 30 m. Der große Friedenspark-Radius umfasst auch benachbarte Stationen und belegt keinen tatsächlichen Aufenthalt im Park. Die GPS-Erreichbarkeit muss vor Ort erprobt werden. Die App kontrolliert die Stationen, nicht den tatsächlich gelaufenen Weg zwischen ihnen.
 
 | Nr. | Station | Breitengrad | Längengrad | Radius |
 |---|---|---|---|---|
@@ -14,7 +14,7 @@ Die zugeordneten Hinweise und Bilder der Ersti-Tage sind eingebaut; offene Angab
 | 2 | Springbrunnen | 51.751311 | 11.974432 | 30 m |
 | 3 | Stadtbibliothek | 51.750959 | 11.974805 | 30 m |
 | 4 | Spargasse | 51.749773 | 11.974424 | 30 m |
-| 5 | Friedenspark | 51.748731 | 11.974642 | 30 m |
+| 5 | Friedenspark | 51.748731 | 11.974642 | 1 km |
 | 6 | Feuerwehr Köthen | 51.749458 | 11.975715 | 30 m |
 | 7 | Kuh aus Stein | 51.75069 | 11.979175 | 30 m |
 | 8 | Regenschirm – Bärplatz 2 | 51.75063 | 11.980231 | 30 m |

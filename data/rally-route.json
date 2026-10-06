@@ -58,7 +58,7 @@
       "name": "Friedenspark",
       "lat": 51.748731,
       "lng": 11.974642,
-      "radiusMeters": 30,
+      "radiusMeters": 1000,
       "hint": "Begebt euch in den Friedenspark und findet dort ein Denkmal, für das die alten Ägypter bekannt waren. Es ist keine Pyramide, aber es besitzt eine pyramidenförmige Spitze.",
       "sourceListIndex": 16,
       "locationVerifiedOnSite": false
